@@ -1,27 +1,24 @@
 # Java
 *.class
-*.bluej
-*.pkg
-*.jar
-*.war
-*.ear
+bin/
+out/
 *.log
 
-# Gradle
+# Project Settings (Keep for portability in plain Java projects)
+# .classpath
+# .project
+# .vscode/
+
+# Gradle (Legacy)
 .gradle/
 build/
 
-# IntelliJ IDEA
+# IDE files
 .idea/
 *.iml
-*.ipr
-*.iws
 out/
-
-# VS Code
-.vscode/
-!.vscode/settings.json
 
 # OS files
 Thumbs.db
 .DS_Store
+

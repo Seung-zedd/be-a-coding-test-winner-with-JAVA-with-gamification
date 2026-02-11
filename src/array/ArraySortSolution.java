@@ -9,13 +9,6 @@ import java.util.*;
 
 public class ArraySortSolution {
     public static int[] solution(int[] arr) {
-        int[] clone = arr.clone();
-        /*
-         * Arrays.sort(arr);
-         * 
-         * return arr;
-         */
-
         return Arrays.stream(arr).sorted().toArray();
     }
 }

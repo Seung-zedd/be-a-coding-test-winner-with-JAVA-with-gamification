@@ -1,7 +1,6 @@
 package array;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 /*
 <코드 설계>

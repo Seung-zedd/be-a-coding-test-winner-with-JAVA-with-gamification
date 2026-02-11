@@ -1,7 +1,5 @@
 package array;
 
-import java.util.*;
-import java.util.stream.Collectors;
 /*
 1. 10^2 * 10^2 = 10^4 < 10^8이므로 완전탐색 가능!
 
@@ -21,7 +19,6 @@ public class MatrixMulSolution {
         // 1. 행렬 곱의 size = (m x k) x (k x n) = m x n
         int r1 = arr1.length;
         int c1 = arr1[0].length;
-        int r2 = arr2.length;
         int c2 = arr2[0].length;
         int[][] answer = new int[r1][c2]; // 리턴할 정답 배열
 
