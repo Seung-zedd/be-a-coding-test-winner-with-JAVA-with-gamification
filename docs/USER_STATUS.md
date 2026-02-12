@@ -29,6 +29,11 @@
 
 > "value는 이미 2차원에서 정해진 값인데, 그것을 1차원으로 자른 것이고, 그 부분을 left, right에 따라 슬라이딩 윈도우처럼 움직이는 구조이기 때문에 고정값인 value를 1차원으로 설정한 arr에 반복문으로 채워나가기만 하면 되는거였음."
 
+<!-- Victory BGM Player -->
+<audio controls autoplay>
+  <source src="audios/victory_fanfare.mp3" type="audio/mpeg">
+</audio>
+
 ---
 
 ### 🧠 던전 통찰 (Dungeon Insights): Dimensional Rifts
