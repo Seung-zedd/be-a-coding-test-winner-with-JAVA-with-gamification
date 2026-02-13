@@ -1,19 +1,19 @@
 {
-  // 에디터 자체의 자동 완성 제안 기능 끄기
-  "editor.suggestOnTriggerCharacters": false,
+  // 에디터 자체의 자동 완성 제안 기능 켜기 (인텔리센스 부활!)
+  "editor.suggestOnTriggerCharacters": true,
   "editor.quickSuggestions": {
-    "other": "off",
+    "other": "on",
     "comments": "off",
-    "strings": "off"
+    "strings": "on"
   },
-  "editor.acceptSuggestionOnEnter": "off",
-  "editor.tabCompletion": "off",
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.tabCompletion": "on",
 
-  // AI 인라인 제안(회색 글씨 제안) 비활성화
+  // AI 인라인 제안(회색 글씨 - 정답 미리보기)은 여전히 비활성화!
   "editor.inlineSuggest.enabled": false,
 
-  // Java 특정 완성 비활성화
-  "java.completion.enabled": false,
+  // Java 특정 완성 활성화
+  "java.completion.enabled": true,
   "java.debug.settings.onBuildFailureProceed": true,
   "java.project.sourcePaths": ["src"],
   "java.import.gradle.enabled": false,
