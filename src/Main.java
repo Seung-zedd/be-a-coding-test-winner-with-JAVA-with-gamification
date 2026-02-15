@@ -1,5 +1,8 @@
+import array.VisitedLenSolution;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, world");
+        VisitedLenSolution v = new VisitedLenSolution();
+        System.out.println(v.solution("ULURRDLLU"));
     }
 }
