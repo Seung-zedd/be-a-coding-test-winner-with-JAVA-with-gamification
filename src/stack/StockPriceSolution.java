@@ -2,42 +2,34 @@ package stack;
 
 import java.util.*;
 
-/*
-가격이 떨어지지 않은 기간은 몇 초?
- */
-
-
 public class StockPriceSolution {
     public int[] solution(int[] prices) {
-        // 떨어지지 않은 텀을 담기 위한 리스트
-        int[] answer = new int[prices.length];
-
-        // 특정 조건을 체크하기 위한 컬렉션: 스택
-        // s[0] = price, s[1] = idx
+        // prices의 idx와 val을 저장하기 위함
         Stack<int[]> s = new Stack<>();
 
+        // ans 초기화
+        int[] ans = new int[prices.length];
 
+        // prices 순회
         for (int i = 0; i < prices.length; i++) {
-            // 현재 가격보다 과거의 가격이 높으면
-            //! while문으로 처리해야 하는 이유: 스택에 남아있는 원소들이 현재 가격보다 계속 높을 수 있기 때문
-            while (!s.isEmpty() && s.peek()[0] > prices[i]) {
-                calculateTerm(s, i, answer);
-            }
-
-            s.push(new int[]{prices[i], i});
+            // 가격이 떨어지면 pop && null-safety
+            while (!s.isEmpty() && s.peek()[1] > prices[i]) {
+                int[] result = s.pop();
+                int idx = result[0];
+                ans[idx] = i - idx;
+                //! 현재 순회하고 있는 i의 데이터도 저장할 필요가 없음 왜 why? while문으로 반응 조건(가격이 떨어졌을 때)를 계속해서 검사하니까
+                //! s.push(new int[] { i, prices[i] });
+            } 
+                s.push(new int[] { i, prices[i] });
         }
 
-        // 남아있는 스택을 처리, 즉 가격이 떨어지지 않은 주식가격들의 기간을 계산
+        // 스택에 남아있는 값 후처리
         while (!s.isEmpty()) {
-            calculateTerm(s, (prices.length - 1), answer);
+            int[] result = s.pop();
+            int idx = result[0];
+            ans[idx] = (prices.length - 1) - idx;
         }
 
-        return answer;
-    }
-
-    private static void calculateTerm(Stack<int[]> s, int length, int[] answer) {
-        int prevSec = s.pop()[1];
-        int term = length - prevSec;
-        answer[prevSec] = term;
+        return ans;
     }
 }

@@ -1,8 +1,9 @@
-import array.VisitedLenSolution;
+import stack.StockPriceSolution;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        VisitedLenSolution v = new VisitedLenSolution();
-        System.out.println(v.solution("ULURRDLLU"));
+        StockPriceSolution s = new StockPriceSolution();
+        System.out.println(Arrays.toString(s.solution(new int[] { 1, 2, 3, 2, 3 })));
     }
 }
