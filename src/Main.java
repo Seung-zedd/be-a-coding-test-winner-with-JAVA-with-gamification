@@ -1,9 +1,11 @@
 import stack.StockPriceSolution;
+import stack.ValidParenthesisLeftRotateSolution;
+
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        StockPriceSolution s = new StockPriceSolution();
-        System.out.println(Arrays.toString(s.solution(new int[] { 1, 2, 3, 2, 3 })));
+        ValidParenthesisLeftRotateSolution v = new ValidParenthesisLeftRotateSolution();
+        System.out.println(v.solution("[](){}"));
     }
 }

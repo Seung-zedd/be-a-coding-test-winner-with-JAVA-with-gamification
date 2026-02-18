@@ -4,57 +4,39 @@ import java.util.*;
 
 public class ValidParenthesisLeftRotateSolution {
     public int solution(String s) {
-        // isEmpty()의 true 값을 카운팅하기 위한 장치 필요
-        int count = 0;
-
-        // 이 s를 왼쪽으로 x (0 ≤ x < (s의 길이)) 칸만큼 회전시켰을 때
+        int answer = 0;
+        // 1. s를 0 ~ s.len - 1 만큼 순회하기 위해 for문 사용
         for (int i = 0; i < s.length(); i++) {
-            // 회전을 순차적으로 하고
-            count += rotateWithStreams(s, i);
+            String str = leftLotate(i, s);
+            answer += isValid(str);
         }
 
-        return count;
+        return answer;
     }
 
-    /**
-     *
-     * @param s: 회전할 배열
-     * @param k: 회전할 위치 수
-     * @return
-     */
-    private static int rotateWithStreams(String s, int k) {
-        // 왼쪽으로 1번만 회전
-        //! 길지 않은 문자열 끼리는 + 연산자로 더할 수 있음
-        String result = s.substring(k) + s.substring(0, k);
-        // 왼쪽 회전 결과를 파라미터로 넘겨서 괄호 유효성 검사 함수 호출
-        return isValidParenthesis(result) ? 1 : 0;
-
+    private static String leftLotate(int x, String s) {
+        // x만큼 왼쪽으로 회전: x부터 끝까지 + 처음부터 x전까지
+        return s.substring(x) + s.substring(0, x);
     }
 
-
-    private static boolean isValidParenthesis(String s) {
-        Stack<Character> stack = new Stack<>();
+    private static int isValid(String s) {
+        Stack<Character> st = new Stack<>();
 
         for (int i = 0; i < s.length(); i++) {
-            // 열린 괄호는 무조건 푸시
-            if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
-                stack.push(s.charAt(i));
-            } else if (!stack.isEmpty()) {
-                if (s.charAt(i) == ')' && stack.peek() == '(') {
-                    stack.pop();
-                } else if (s.charAt(i) == '}' && stack.peek() == '{') {
-                    stack.pop();
-                } else if (s.charAt(i) == ']' && stack.peek() == '[') {
-                    stack.pop();
-                }
+            Character c = s.charAt(i);
+            // 괄호 짝 매칭: !st.isEmpty()가 모든 || 조건을 보호하도록 괄호로 묶음
+            //! 연산자 순서가 애매하면 괄호로 안전하게 묶자!
+            if (!st.isEmpty() && ((st.peek() == '(' && c == ')') ||
+                    (st.peek() == '{' && c == '}') ||
+                    (st.peek() == '[' && c == ']'))) {
+                st.pop();
+            } else if (c == ')' || c == '}' || c == ']') {
+                // 짝이 맞지 않는 닫힌 괄호가 오거나 스택이 비어있는데 닫힌 괄호가 온 경우
+                return 0;
             } else {
-                // 닫힌 괄호는 매칭이 안되므로 false를 리턴
-                return false;
+                st.push(c);
             }
         }
-
-        return stack.isEmpty();
+        return st.isEmpty() ? 1 : 0;
     }
 }
-
-
