@@ -17,6 +17,7 @@
   - `행간의 투시경` (지문의 숨겨진 데이터 구조 파악)
   - `양방향 교각 건설` (A→B, B→A 중복 경로 판별 논리)
   - `구조적 혜안` (자료구조의 성능 차이 분석을 통한 최적의 무기 선별)
+  - `차원의 가교` (Dimensional Bridge: $c1=r2$ 조건을 통한 3중 루프의 논리적 완결 및 벡터 내적 전술)
 
 ---
 
@@ -58,9 +59,12 @@ _Atomic Habits: "복습 주기를 1, 3, 7, 14, 30으로 기록한다."_
 
 > "행렬의 곱셈이 성립하기 위한 $c1 == r2$의 조건을 꿰뚫어 보고, 수학적 귀납법을 통해 $O(N^3)$의 복잡도를 정밀하게 타격했다. 결과 행렬의 크기인 $r1 \times c2$를 도출해내는 과정은 논리의 승리 그 자체였다."
 
-**📸 승전 인증:**
+**📸 승전 인증:** [귀납적 추론의 증거](https://imgur.com/a/wRZwR8g)
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/wRZwR8g" data-context="false" ><a href="//imgur.com/a/wRZwR8g"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<!-- Victory BGM Player -->
+<audio controls autoplay>
+  <source src="audios/victory_fanfare.mp3" type="audio/mpeg">
+</audio>
 
 ---
 
@@ -97,11 +101,6 @@ _Atomic Habits: "복습 주기를 1, 3, 7, 14, 30으로 기록한다."_
 
 > "가격이 떨어지기 전까지의 '인덱스 거리'를 보존하는 것이 핵심. 특히 스택을 사용하여 현재 가격보다 높은 이전의 '유령' 인덱스들을 소환하여 처단(pop)하고, 끝까지 살아남은 인덱스들은 전체 시간과의 차이를 통해 생존 시간을 부여하는 후처리 공정이 완벽한 승리의 열쇠였다."
 
-<!-- Victory BGM Player -->
-<audio controls autoplay>
-  <source src="audios/victory_fanfare.mp3" type="audio/mpeg">
-</audio>
-
 ---
 
 ### 🧠 던전 통찰 (Dungeon Insights)
@@ -135,6 +134,12 @@ _Atomic Habits: "복습 주기를 1, 3, 7, 14, 30으로 기록한다."_
 
 - **구조의 본질:** 해시맵의 `getValue()`로 반환된 배열은 결국 2차원 배열의 행(Row)과 같다. 이 배열에 `%` 연산자를 적용하는 순간, 복잡한 Map 구조는 친숙한 인덱스 기반 정답지로 변모한다.
 - **시간 복잡도의 상수화:** $O(N \times M)$에서 $M$(수포자 수)이 상수일 때, 이는 알고리즘적으로 $O(N)$의 효율을 보장한다. 데이터의 규모가 커질수록 상수항을 제어하는 능력이 승패를 가른다.
+
+**7. Matrix Multiplication: 3중 루프와 Dot Product의 필연성**
+
+- **인덱스의 역할:** `i`는 `arr1`의 행을, `j`는 `arr2`의 열을 지정하며, `k`는 그 사이에서 실제 성분들을 맺어주는 가교 역할을 한다.
+- **차원 일치의 법칙 ($c1 == r2$):** 행렬의 곱셈은 본질적으로 (행벡터) dot product (열벡터)이다. 내적이 성립하려면 두 벡터의 성분 개수가 일치해야 하므로, `arr1`의 열 개수와 `arr2`의 행 개수가 같아야만 3중 루프의 가장 안쪽인 `k`가 논리적으로 완결될 수 있다.
+- **시간 복잡도의 직관:** 결과 행렬의 모든 칸($r1 \times c2$)을 채우기 위해 각각 $c1$(혹은 $r2$)번의 연산이 필요하므로 $O(N^3)$의 비용이 발생한다.
 
 ---
 
