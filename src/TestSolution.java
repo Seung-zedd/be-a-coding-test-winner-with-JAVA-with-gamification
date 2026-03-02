@@ -1,24 +1,20 @@
-import stack.TableEditSolution;
+import queue.JosephusSolution;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // Table Edit Test
-        testTableEdit();
+        // Josephus Problem Test
+        testJosephus();
     }
 
-    private static void testTableEdit() {
-        TableEditSolution solver = new TableEditSolution();
-        System.out.println("\n--- Table Edit Test ---");
-        int n = 8;
-        int k = 2;
-        String[] cmd = { "D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z" };
-        String expected = "OOOOXOOO";
-        String result = solver.solution(n, k, cmd);
+    private static void testJosephus() {
+        JosephusSolution solver = new JosephusSolution();
+        System.out.println("\n--- Josephus Problem Test (BOJ 1158) ---");
+        int n = 7;
+        int k = 3;
+        int[] expected = { 3, 6, 2, 7, 5, 1, 4 };
+        int[] result = solver.solution(n, k);
 
-        System.out.println("Test Case 1: " + (expected.equals(result) ? "PASS" : "FAIL"));
-        if (!expected.equals(result)) {
-            System.out.println("  Expected: " + expected);
-            System.out.println("  Actual:   " + result);
-        }
+        System.out.print("Result (N=7, K=3): " + java.util.Arrays.toString(result));
+        System.out.println(" [" + (java.util.Arrays.equals(expected, result) ? "PASS" : "FAIL") + "]");
     }
 }
