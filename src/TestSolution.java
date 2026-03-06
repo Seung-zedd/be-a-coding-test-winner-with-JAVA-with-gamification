@@ -9,10 +9,10 @@ public class TestSolution {
         // testTableEdit();
 
         // [복습] Josephus Problem Quest (Lv. 2 Review)
-        testJosephus();
+        // testJosephus();
 
         // [신규] Card Deck Quest
-        // testCardDeck();
+        testCardDeck();
     }
 
     private static void testTableEdit() {
