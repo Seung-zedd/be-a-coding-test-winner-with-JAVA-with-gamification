@@ -27,5 +27,7 @@
       "path": "C:\\Program Files\\Java\\jre1.8.0_481",
       "default": true
     }
-  ]
+  ],
+  "files.encoding": "utf8",
+  "java.project.resourceEncoding": "UTF-8"
 }

@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class TestSolution {
     public static void main(String[] args) {
         // [복습] Table Edit Quest (Lv. 2 Review)
-        testTableEdit();
+        // testTableEdit();
 
         // [복습] Josephus Problem Quest (Lv. 2 Review)
-        // testJosephus();
+        testJosephus();
 
         // [신규] Card Deck Quest
         // testCardDeck();
