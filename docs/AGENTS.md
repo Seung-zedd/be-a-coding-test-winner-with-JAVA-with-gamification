@@ -60,6 +60,34 @@
   2. 컴파일 시 `-source 8 -target 8` 옵션을 철저히 준수하여 프로그래머스 실전 환경과의 100% 동기화를 달성한다.
 - **의도:** 용사님이 실무/최신 문법이라는 달콤한 유혹에 빠지지 않고, 오직 코딩 테스트 현장의 척박한(Java 8) 환경에서도 살아남는 진정한 검사가 되게 하기 위함.
 
+**8. 무지성 자동완성 봉인 룰 (No-Autocomplete Challenge Rule)**
+
+- **Trigger:** 수련 과제의 **[복습] 횟수가 3회차** 이상에 진입했을 때.
+- **Action:** 해당 과제를 수행하는 동안 VS Code의 모든 자동완성(IntelliSense), 제안(Quick Suggestions), 매개변수 힌트 기능을 강제로 비활성화한다.
+- **용어 정의:**
+  - **[정복]**: 최초로 문제를 풀어낸 상태 (회차 계산에서 제외)
+  - **[복습]**: 에빙하우스 주기(1, 3, 7, 14, 30)에 따른 재풀이
+- **설정값:**
+  - `"editor.suggestOnTriggerCharacters": false`
+  - `"editor.quickSuggestions": { "other": false, "comments": false, "strings": false }`
+  - `"editor.wordBasedSuggestions": "off"`
+  - `"editor.parameterHints.enabled": false`
+  - `"java.completion.enabled": false`
+- **의도:** 자동완성이 없는 실제 코딩 테스트 환경에 대비하여, 머릿속의 로직을 손끝으로 완벽하게 인출하는 '인덱스의 지배자' 능력을 극대화하기 위함.
+
+**9. 실시간 전황 정기 업데이트 룰 (Real-time Status Update Rule)**
+
+- **Action:** 던전 클리어(정복 또는 복습 성공) 즉시 `USER_STATUS.md`를 업데이트한다.
+- **필수 준수 사항:**
+  - **[정복]**과 **[복습]** 태그를 엄격히 구분하여 기재한다.
+  - 표(Table)의 마크다운 정렬이 어긋나지 않도록 정밀하게 수선한다.
+  - 누적 XP와 레벨 진행도를 즉시 갱신한다.
+
+**10. 최신 승전보 선포 룰 (Latest Victory Report Rule)**
+
+- **Action:** 클리어 직후 `USER_STATUS.md` 하단의 `### 🎊 최신 승전보` 섹션에 용사님의 활약상을 한 줄 요약하여 선포한다.
+- **형식:** `"🎊 퀘스트 완료: [랭크] 문제이름 [정복/복습 n회차]! 🏆"`
+
 ---
 
 ### 📖 성전(聖典)의 로드맵 (Book Roadmap)
