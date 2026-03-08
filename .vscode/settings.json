@@ -1,11 +1,11 @@
 {
-  "editor.suggestOnTriggerCharacters": true,
+  "editor.suggestOnTriggerCharacters": false,
   "editor.quickSuggestions": {
-    "other": true,
-    "comments": true,
-    "strings": true
+    "other": false,
+    "comments": false,
+    "strings": false
   },
-  "editor.wordBasedSuggestions": "on",
-  "editor.parameterHints.enabled": true,
-  "java.completion.enabled": true
+  "editor.wordBasedSuggestions": "off",
+  "editor.parameterHints.enabled": false,
+  "java.completion.enabled": false
 }
