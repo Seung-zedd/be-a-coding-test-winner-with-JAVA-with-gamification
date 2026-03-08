@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class TestSolution {
     public static void main(String[] args) {
         // [복습] Josephus Problem Quest (Lv. 3 Review: 3회차)
-        testJosephus();
+        // testJosephus();
 
         // [복습] Function Development Quest (Lv. 1 Review: 1회차)
-        // testFunDev();
+        testFunDev();
 
         // [신규] Make Sum Quest (Quest 18: Hash)
         // testMakeSum();
