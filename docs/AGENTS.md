@@ -58,7 +58,7 @@
 - **Action:**
   1. `.classpath` 및 `.vscode/settings.json`을 **Java 8(1.8)**로 강제 고정하여 에디터 인텔리센스 단계부터 Java 8 문법만을 허용한다.
   2. 컴파일 시 `-source 8 -target 8` 옵션을 철저히 준수하여 프로그래머스 실전 환경과의 100% 동기화를 달성한다.
-  3. `settings.json` 내에 `java.jdt.ls.java.home` 및 `java.configuration.runtimes`를 **JRE가 아닌 JDK 1.8** 경로로 명시한다. 설치가 필요한 경우 `winget install EclipseAdoptium.Temurin.8.JDK` 명령을 권장한다.
+  3. `settings.json` 내에 확장 프로그램 엔진(`java.jdt.ls.java.home`)은 최신 JDK(21)로, 프로젝트 런타임(`java.configuration.runtimes`)은 **JDK 1.8** 경로(`C:\Program Files\Java\jdk-8.x`)로 이원화하여 명시하며, 버전 충돌 시 'Clean Language Server Workspace'를 수행한다.
 - **의도:** 용사님이 실무/최신 문법이라는 달콤한 유혹에 빠지지 않고, 오직 코딩 테스트 현장의 척박한(Java 8) 환경에서도 살아남는 진정한 검사가 되게 하기 위함.
 
 **8. 베테랑 자동완성 봉인 룰 (Veteran Autocomplete Seal Rule)**

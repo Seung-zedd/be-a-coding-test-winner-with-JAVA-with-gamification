@@ -5,7 +5,7 @@ public class TestSolution {
         testMakeSum();
 
         // [복습] 2회차: Quest 19 - Uncompleted Player
-        // testUncompletedPlayer();
+        testUncompletedPlayer();
 
         // [신규] Quest 20 - Discount Promotion
         // testDiscountPromotion();
@@ -35,17 +35,20 @@ public class TestSolution {
         String[] p1 = { "leo", "kiki", "eden" };
         String[] c1 = { "eden", "kiki" };
         String res1 = solver.solution(p1, c1);
-        System.out.println("Test Case 1: " + ("leo".equals(res1) ? "PASS" : "FAIL"));
+        System.out.print("Test Case 1: ");
+        System.out.println("leo".equals(res1) ? "PASS" : "FAIL");
 
         String[] p2 = { "marina", "josipa", "nikola", "vinko", "filipa" };
         String[] c2 = { "josipa", "filipa", "marina", "nikola" };
         String res2 = solver.solution(p2, c2);
-        System.out.println("Test Case 2: " + ("vinko".equals(res2) ? "PASS" : "FAIL"));
+        System.out.print("Test Case 2: ");
+        System.out.println("vinko".equals(res2) ? "PASS" : "FAIL");
 
         String[] p3 = { "mislav", "stanko", "mislav", "ana" };
         String[] c3 = { "stanko", "ana", "mislav" };
         String res3 = solver.solution(p3, c3);
-        System.out.println("Test Case 3: " + ("mislav".equals(res3) ? "PASS" : "FAIL"));
+        System.out.print("Test Case 3: ");
+        System.out.println("mislav".equals(res3) ? "PASS" : "FAIL");
     }
 
     private static void testDiscountPromotion() {
