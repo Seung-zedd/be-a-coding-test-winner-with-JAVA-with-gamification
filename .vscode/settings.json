@@ -1,11 +1,19 @@
 {
-  "editor.suggestOnTriggerCharacters": true,
+  "editor.suggestOnTriggerCharacters": false,
   "editor.quickSuggestions": {
-    "other": true,
-    "comments": true,
-    "strings": true
+    "other": false,
+    "comments": false,
+    "strings": false
   },
-  "editor.wordBasedSuggestions": "on",
-  "editor.parameterHints.enabled": true,
-  "java.completion.enabled": true
+  "editor.wordBasedSuggestions": "off",
+  "editor.parameterHints.enabled": false,
+  "java.completion.enabled": false,
+  "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.482.8-hotspot",
+      "default": true
+    }
+  ]
 }

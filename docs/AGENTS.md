@@ -58,11 +58,18 @@
 - **Action:**
   1. `.classpath` 및 `.vscode/settings.json`을 **Java 8(1.8)**로 강제 고정하여 에디터 인텔리센스 단계부터 Java 8 문법만을 허용한다.
   2. 컴파일 시 `-source 8 -target 8` 옵션을 철저히 준수하여 프로그래머스 실전 환경과의 100% 동기화를 달성한다.
+  3. `settings.json` 내에 `java.jdt.ls.java.home` 및 `java.configuration.runtimes`를 **JRE가 아닌 JDK 1.8** 경로로 명시한다. 설치가 필요한 경우 `winget install EclipseAdoptium.Temurin.8.JDK` 명령을 권장한다.
 - **의도:** 용사님이 실무/최신 문법이라는 달콤한 유혹에 빠지지 않고, 오직 코딩 테스트 현장의 척박한(Java 8) 환경에서도 살아남는 진정한 검사가 되게 하기 위함.
 
-**8. 무지성 자동완성 봉인 룰 (No-Autocomplete Challenge Rule)**
+**8. 베테랑 자동완성 봉인 룰 (Veteran Autocomplete Seal Rule)**
 
-- **Trigger:** 수련 과제의 **[복습] 횟수가 3회차** 이상에 진입했을 때.
+- **Trigger:** **베테랑 우대(Veteran Exemption)**가 적용된 문제(최대 3회 복습)가 **2회차 복습** 이상에 진입했을 때.
+- **Action:** 해당 과제를 수행하는 동안 VS Code의 모든 자동완성(IntelliSense) 기능을 강제로 비활성화한다.
+- **의도:** 이미 숙달된 베테랑 문제에 대해서는 더 이른 시점에 자동완성을 봉인하여, 뇌와 손의 완벽한 동기화를 꾀하기 위함.
+
+**9. 일반 자동완성 봉인 룰 (Standard Autocomplete Seal Rule)**
+
+- **Trigger:** 일반 수련 과제(5회 복습)의 **복습 횟수가 3회차** 이상에 진입했을 때.
 - **Action:** 해당 과제를 수행하는 동안 VS Code의 모든 자동완성(IntelliSense), 제안(Quick Suggestions), 매개변수 힌트 기능을 강제로 비활성화한다.
 - **용어 정의:**
   - **[정복]**: 최초로 문제를 풀어낸 상태 (회차 계산에서 제외)
