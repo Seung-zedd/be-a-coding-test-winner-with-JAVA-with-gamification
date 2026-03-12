@@ -35,37 +35,43 @@ XYZ 마트에서는 회원을 대상으로 매일 한 가지 제품을 할인하
 
 public class DiscountPromotionSolution {
     public int solution(String[] want, int[] number, String[] discount) {
-        // answer는 10일 연속이 되는 총 날짜, target은 10일 연속
-        int answer = 0, target = 0;
+        int answer = 0;
 
-        // 해시맵 초기화
-        Map<String, Integer> map = new HashMap<>();
-
-        // discount를 순회하면서 슬라이딩 윈도우 시작
-        for (int i = 0; i < discount.length; i++) {
-            // 마찬가지로 map의 개수도 카운팅해주고 초기화도 해줘야하므로 for문 내에서 초기화
-            for (int k = 0; k < want.length; k++) {
-                map.put(want[k], number[k]);
-            }
-
-            target = 0; // 슬라이딩 될 때마다 타겟 다시 카운팅
-            int start = i;
-            int end = i + 9;
-
-            for (int j = start; j < Math.min(end + 1, discount.length); j++) {
-                if (map.containsKey(discount[j]) && map.get(discount[j]) > 0) {
-                    target++;
-                    map.put(discount[j], map.get(discount[j]) - 1); // 개수 감소
-                }
-            }
-            // 슬라이딩 윈도우가 끝나면 타겟 검증 후 날짜 1 증가
-            if (target == 10) {
-                answer++;
-            }
-            // 맵도 다시 초기화
-            map.clear();
+        // 1. 정현이가 원하는 고정된 품목 지도를 만듭니다. ( wantMap )
+        Map<String, Integer> wantMap = new HashMap<>();
+        for (int i = 0; i < want.length; i++) {
+            wantMap.put(want[i], number[i]);
         }
 
+        // 2. 현재 10일간의 현황판을 만듭니다. ( windowMap )
+        Map<String, Integer> windowMap = new HashMap<>();
+        // 3. [초기 세팅] 첫 10일(0~9)을 현황판에 기록합니다.
+        for (int i = 0; i < 10; i++) {
+            windowMap.put(discount[i], windowMap.getOrDefault(discount[i], 0) + 1);
+        }
+
+        // 4. 첫 10일치가 완벽히 일치하는지 확인합니다.
+        if (wantMap.equals(windowMap))
+            answer++;
+
+        // 5. [본격 슬라이딩] 10일차부터 끝까지 '나가는 놈'과 '들어오는 놈'만 처리합니다.
+        for (int i = 10; i < discount.length; i++) {
+            // A) 나가는 놈 처리 (i - 10일차 제품)
+            String outItem = discount[i - 10];
+            int outCount = windowMap.get(outItem);
+
+            if (outCount == 1) {
+                windowMap.remove(outItem); // 수량이 0이 되면 맵에서 완전히 제거해야 equals가 작동함
+            } else {
+                windowMap.put(outItem, outCount - 1);
+            }
+            // B) 들어오는 놈 처리 (i일차 제품)
+            String inItem = discount[i];
+            windowMap.put(inItem, windowMap.getOrDefault(inItem, 0) + 1);
+            // C) 검증: 지도가 현황판과 일치하는가?
+            if (wantMap.equals(windowMap))
+                answer++;
+        }
         return answer;
     }
 }
