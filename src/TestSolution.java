@@ -2,13 +2,13 @@
 public class TestSolution {
     public static void main(String[] args) {
         // [복습] 2회차: Quest 18 - Make Sum
-        testMakeSum();
+        // testMakeSum();
 
         // [복습] 2회차: Quest 19 - Uncompleted Player
-        testUncompletedPlayer();
+        // testUncompletedPlayer();
 
         // [신규] Quest 20 - Discount Promotion
-        // testDiscountPromotion();
+        testDiscountPromotion();
     }
 
     private static void testMakeSum() {
