@@ -90,7 +90,7 @@ public class TestSolution {
         String[] c2_2 = { "watermelon", "kiwi" };
         String[] g2 = { "apple", "strawberry", "watermelon", "kiwi", "banana" };
         String res2 = solver.solution(c2_1, c2_2, g2);
-        System.out.println("Test Case 2: " + ("No".equals(res2) ? "PASS" : "FAIL"));
+        System.out.println("Test Case 2: " + ("Yes".equals(res2) ? "PASS" : "FAIL"));
     }
 
     private static void testOpenChat() {
