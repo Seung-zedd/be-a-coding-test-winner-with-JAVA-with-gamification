@@ -5,13 +5,13 @@ public class TestSolution {
         // testMakeSum();
 
         // [복습 3회차] Quest 19 - Uncompleted Player
-        testUncompletedPlayer();
+        // testUncompletedPlayer();
 
         // [복습 1회차] Quest 20 - Discount Promotion
         // testDiscountPromotion();
 
         // [복습 4회차] Quest 17 - Card Deck
-        // testCardDeck();
+        testCardDeck();
 
         // [신규] Quest 21 - Open Chat
         // testOpenChat();
