@@ -65,39 +65,38 @@ import java.util.*;
 
 public class OpenChatSolution {
     public String[] solution(String[] record) {
-        Map<String, String> map = new HashMap<>();
-
-        // 1) 최종 닉네임만 추출하기 위한 record 순회
+        // record를 기반으로 해시맵에 최종 닉네임을 저장한다.
+        // 공백을 기준으로 command, userid, nickname인데 해시맵에는 <userid, nickname>만 저장
+        Map<String, String> userMap = new HashMap<>();
         for (int i = 0; i < record.length; i++) {
             String[] msg = record[i].split(" ");
+            // ! Leave는 username까지만 있으므로, msg의 길이가 3이상일 때만 파싱하고 맵에 저장
             if (msg.length > 2) {
-                String userId = msg[1];
+                String userid = msg[1];
                 String nickname = msg[2];
-                map.put(userId, nickname);
+                userMap.put(userid, nickname);
             }
         }
 
-        // 명령어에 따라 메세지를 조립하기 위해 StringBuilder 객체 생성
-        //! 해시맵의 get() == O(1) * "님이 들어왔습니다." == O(N) = O(N)이므로 가능하다. 여기서 해시맵의 진가가 발휘된다!
-        List<String> result = new ArrayList<>();
-
+        // 완성된 해시맵을 기준으로 record를 순회하면서 메시지를 조립
+        // 이때, "+" 연산자로 조립이 가능, 왜냐하면 해시맵의 조회는 O(1)만 걸리기 때문
+        // ? Change는 리턴 메시지에 포함되지 않기 때문에 record.length와 일치하지 않아서 가변 리스트 사용
+        List<String> answer = new ArrayList<>();
         for (int i = 0; i < record.length; i++) {
-            // ! 표편집 문제와 똑같이 userId, nickname은 switch-case 문안에서 파싱할 것!(배열인덱스에러 발생 우려)
             String[] msg = record[i].split(" ");
             String command = msg[0];
-            String userId = msg[1];
+            String userid = msg[1];
 
-            // 명령어에 따라 메시지를 조립 && 닉네임은 완성된 해시맵에서 꺼내 쓴다
             switch (command) {
                 case "Enter":
-                    result.add(map.get(userId) + "님이 들어왔습니다.");
+                    answer.add(userMap.get(userid) + "님이 들어왔습니다.");
                     break;
                 case "Leave":
-                    result.add(map.get(userId) + "님이 나갔습니다.");
+                    answer.add(userMap.get(userid) + "님이 나갔습니다.");
                     break;
             }
         }
 
-        return result.stream().toArray(String[]::new);
+        return answer.stream().toArray(String[]::new);
     }
 }
