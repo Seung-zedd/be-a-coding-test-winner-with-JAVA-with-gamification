@@ -20,7 +20,27 @@ import java.util.*;
 
 public class JosephusSolution {
     public int[] solution(int n, int k) {
+        // 덱으로 큐 초기화
+        Deque<Integer> q = new ArrayDeque<>();
 
-        return new int[] {};
+        // 먼저 "N명의 사람이 원을 이루면서 앉아있고"를 구현하기 위해 원형 큐에 삽입
+        for (int i = 1; i < n + 1; i++) {
+            q.offer(i);
+        }
+
+        // 요세푸스 순열을 리스트로 초기화
+        List<Integer> answer = new ArrayList<>();
+
+        // N명이 모두 제거될 때까지 반복
+        
+        while (!q.isEmpty()) {
+            for (int i = 0; i < k - 1; i++) {
+                q.offer(q.poll());
+            }
+
+            answer.add(q.poll()); // K번째 사람 answer에 삽입
+        }
+
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }

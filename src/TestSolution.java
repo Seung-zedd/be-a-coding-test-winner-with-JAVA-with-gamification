@@ -2,13 +2,55 @@
 public class TestSolution {
     public static void main(String[] args) {
         // [복습 1회차] Quest 20 - Discount Promotion
-        testDiscountPromotion();
+        // testDiscountPromotion();
 
         // [복습 4회차] Quest 17 - Card Deck
         // testCardDeck();
 
         // [신규] Quest 21 - Open Chat
-        testOpenChat();
+        // testOpenChat();
+
+        // [마스터 도전] Quest 15 - Josephus Problem
+        // testJosephus();
+
+        // [마스터 도전] Quest 16 - Function Development
+        testFunctionDevelopment();
+    }
+
+    private static void testFunctionDevelopment() {
+        queue.FunDevSolution solver = new queue.FunDevSolution();
+        System.out.println("\n--- [마스터 도전] (Function Development - Quest 16) ---");
+
+        int[] p1 = { 93, 30, 55 };
+        int[] s1 = { 1, 30, 5 };
+        int[] expected1 = { 2, 1 };
+        int[] res1 = solver.solution(p1, s1);
+        System.out.println("Test Case 1: " + (java.util.Arrays.equals(res1, expected1) ? "PASS" : "FAIL"));
+
+        int[] p2 = { 95, 90, 99, 99, 80, 99 };
+        int[] s2 = { 1, 1, 1, 1, 1, 1 };
+        int[] expected2 = { 1, 3, 2 };
+        int[] res2 = solver.solution(p2, s2);
+        System.out.println("Test Case 2: " + (java.util.Arrays.equals(res2, expected2) ? "PASS" : "FAIL"));
+    }
+
+    private static void testJosephus() {
+        queue.JosephusSolution solver = new queue.JosephusSolution();
+        System.out.println("\n--- [마스터 도전] (Josephus Problem - Quest 15) ---");
+
+        int n1 = 5, k1 = 2;
+        int[] expected1 = { 2, 4, 1, 5, 3 };
+        int[] res1 = solver.solution(n1, k1);
+        System.out.println("Test Case 1 (n=5, k=2): " + (java.util.Arrays.equals(res1, expected1) ? "PASS" : "FAIL"));
+        if (!java.util.Arrays.equals(res1, expected1)) {
+            System.out.println("Expected: " + java.util.Arrays.toString(expected1));
+            System.out.println("Actual: " + java.util.Arrays.toString(res1));
+        }
+
+        int n2 = 7, k2 = 3;
+        int[] expected2 = { 3, 6, 2, 7, 5, 1, 4 };
+        int[] res2 = solver.solution(n2, k2);
+        System.out.println("Test Case 2 (n=7, k=3): " + (java.util.Arrays.equals(res2, expected2) ? "PASS" : "FAIL"));
     }
 
     private static void testDiscountPromotion() {

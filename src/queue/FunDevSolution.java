@@ -1,10 +1,12 @@
 package queue;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 /*
 ⚔️ [퀘스트] 문제 16: 기능 개발
- 🔗 원형 큐의 순환 논리 및 CQS 원칙 학습
 
 각 기능은 진도가 100%일 때 서비스에 반영할 수 있습니다. 
 뒤에 있는 기능이 앞에 있는 기능보다 먼저 개발될 수 있지만,
@@ -25,7 +27,39 @@ import java.util.*;
 
 public class FunDevSolution {
     public int[] solution(int[] progresses, int[] speeds) {
+        // "뒤에 있는 기능은 앞에 있는 기능이 배포될 때 함께 배포됩니다."를 구현하기 위해 덱 인터페이스 큐 초기화
+        Deque<Integer> q = new ArrayDeque<>();
 
-        return new int[] {};
+        // 1. 개발 날짜를 먼저 계산
+        for (int i = 0; i < progresses.length; i++) {
+            int day = (100 - progresses[i]) / speeds[i];
+            int remain = (100 - progresses[i]) % speeds[i];
+
+            if (remain != 0) {
+                day++;
+            }
+
+            q.offer(day);
+        }
+
+        // 2. 배포 날짜 계산
+        // 어짜피 stream()으로 정적 배열로 언박싱하면 되기 때문에 그냥 리스트로 답을 초기화하자
+        List<Integer> answer = new ArrayList<>();
+
+        while (!q.isEmpty()) {
+            int feature = 0; // 카운팅 시작
+            int maxDate = q.poll();
+            feature++;
+
+            // 단조스택의 맹공
+            while (!q.isEmpty() && (maxDate >= q.peek())) {
+                q.poll();
+                feature++;
+            }
+
+            answer.add(feature);
+        }
+
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
