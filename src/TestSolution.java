@@ -2,7 +2,7 @@
 public class TestSolution {
     public static void main(String[] args) {
         // [복습 1회차] Quest 20 - Discount Promotion
-        // testDiscountPromotion();
+        testDiscountPromotion();
 
         // [복습 4회차] Quest 17 - Card Deck
         // testCardDeck();
