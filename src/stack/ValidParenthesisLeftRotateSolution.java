@@ -40,25 +40,23 @@ public class ValidParenthesisLeftRotateSolution {
     }
 
     private static int validParenthesis(String s) {
-        // 스택 초기화
         Deque<Character> st = new ArrayDeque<>();
-        // 스택에 문자열 삽입
-        for (int i = 0; i < s.length(); i++) {
-            Character c = s.charAt(i);
-            // 짝이 맞으면 pop()
-            if (!st.isEmpty() && ((st.peekLast() == '(' && c == ')') || st.peekLast() == '{' && c == '}' || st
-                    .peekLast() == '[' && c == ']')) {
-                st.pollLast();
+
+        for (char c : s.toCharArray()) {
+            // 짝이 맞으면 Pop
+            if (!st.isEmpty() && ((st.peek() == '(' && c == ')') ||
+                    (st.peek() == '{' && c == '}') ||
+                    (st.peek() == '[' && c == ']'))) {
+                st.pop();
             } else if (c == ')' || c == '}' || c == ']') {
+                // 짝이 맞지 않는 닫힌 괄호가 오면 즉시 실패
                 return 0;
-            }
-            // 열린 괄호는 무조건 push
-            else {
-                st.offer(c);
+            } else {
+                // 열린 괄호는 무조건 Push
+                st.push(c);
             }
         }
 
         return st.isEmpty() ? 1 : 0;
-
     }
 }
