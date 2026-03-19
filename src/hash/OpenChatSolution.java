@@ -3,6 +3,11 @@ package hash;
 import java.util.*;
 
 /*
+[🛡️ 4회차 복습: 오픈 채팅방]
+- 미션: 2-Pass 지연 평가(Lazy Evaluation) 철학의 완벽한 투영
+- 핵심: 1-Pass에서 최종 닉네임 확정, 2-Pass에서 메시지 조립
+- 제한 가혹 조건: 자동 완성 봉인 (Zero Auto-completion)
+
 [문제 해석]
 카카오톡 오픈채팅방에서는 친구가 아닌 사람들과 대화를 할 수 있는데, 본래 닉네임이 아닌 "가상의 닉네임을 사용"하여 채팅방에 들어갈 수 있다.
 -> // nickname도 record에 준다.
@@ -60,44 +65,11 @@ import java.util.*;
 10. 채팅방에서 나간 유저가 닉네임을 변경하는 등 잘못 된 입력은 주어지지 않는다.
 //-> 처음에는 채팅방에 있기 때문에 isOut을 "false"로 초기화하자. 즉, <K, String[]>으로 제네릭해서 idx 0은 닉네임을, idx 1은 나갔는지의 여부를 설정
 -> Leave의 닉네임은 신경쓰지 마라~
-
 */
 
 public class OpenChatSolution {
     public String[] solution(String[] record) {
-        // 1. 최종 닉네임을 반영하기 위해 해시맵에 저장
-        Map<String, String> userMap = new HashMap<>();
-
-        // 1-pass: 최종 닉네임만 추적
-        for (int i = 0; i < record.length; i++) {
-            String[] msg = record[i].split(" ");
-
-            // 닉네임이 있을 때만 해시맵에 저장
-            if (msg.length > 2) {
-                String userid = msg[1];
-                String nickname = msg[2];
-
-                userMap.put(userid, nickname);
-            }
-        }
-
-        // 2-pass: record의 파라미터를 추출해서 메시지와 조립
-        List<String> answer = new ArrayList<>();
-        for (int i = 0; i < record.length; i++) {
-            String[] msg = record[i].split(" ");
-            String command = msg[0];
-            String userid = msg[1];
-
-            switch (command) {
-                case "Enter":
-                    answer.add(userMap.get(userid) + "님이 들어왔습니다.");
-                    break;
-                case "Leave":
-                    answer.add(userMap.get(userid) + "님이 나갔습니다.");
-                    break;
-            }
-        }
-
-        return answer.stream().toArray(String[]::new);
+        // TODO: 이곳에 용사의 논리를 투영하십시오.
+        return new String[0];
     }
 }
