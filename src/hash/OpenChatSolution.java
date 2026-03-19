@@ -100,7 +100,7 @@ public class OpenChatSolution {
             }
         }
         
-        //? map()은 어떤 타입일 때 사용하는거지?
+        //? map()은 어떤 타입일 때 사용하는거지? -> git commit history의 desc를 보셈!
         return answer.stream().toArray(String[]::new);
     }
 }
