@@ -3,8 +3,8 @@ import java.util.Arrays;
 public class TestSolution {
     public static void main(String[] args) {
         // [훈련] 오늘 정복할 퀘스트 목록
-        testDiscountPromotion(); // 1. 할인 행사 (복습 4회차)
-        // testOpenChat(); // 2. 오픈 채팅방 (복습 4회차)
+        // testDiscountPromotion(); // 1. 할인 행사 (복습 4회차)
+        testOpenChat(); // 2. 오픈 채팅방 (복습 4회차)
         // testBestAlbum(); // 3. 베스트 앨범 (복습 2회차)
     }
 
