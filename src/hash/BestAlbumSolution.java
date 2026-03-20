@@ -48,7 +48,44 @@ param: 노래의 **장르**를 나타내는 문자열 배열 genres, 노래별 *
 
 public class BestAlbumSolution {
     public int[] solution(String[] genres, int[] plays) {
-        // TODO: 이곳에 용사의 논리를 투영하십시오.
-        return new int[0];
+        Map<String, Integer> genreMap = new HashMap<>();
+        // A) 장르 별 노래횟수 먼저 집계
+        for (int i = 0; i < genres.length; i++) {
+            genreMap.merge(genres[i], plays[i], Integer::sum);
+        }
+
+        // B) 장르 별 (고유번호, 노래횟수) 리스트로 계산
+        // ! 리스트를 value로 하지 않으면 똑같은 장르일 때 해시값이 업데이트됨
+        Map<String, List<int[]>> musicMap = new HashMap<>();
+        for (int i = 0; i < genres.length; i++) {
+            musicMap.computeIfAbsent(genres[i], k -> new ArrayList<>()).add(new int[] { i, plays[i] });
+        }
+
+        // 장르 별 내림차순 정렬
+        List<Map.Entry<String, Integer>> genreList = new ArrayList<>(genreMap.entrySet());
+        genreList.sort((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()));
+
+        // 집계 계산한 해시맵은 10^2라 2중 for문 사용 가능
+        List<Integer> answer = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : genreList) {
+            String key = entry.getKey();
+            List<int[]> musicList = musicMap.get(key);
+
+            // 장르 내 내림차순 정렬
+            musicList.sort((m1, m2) -> {
+                // if (songX.재생횟수 == songY.재생횟수): **고유번호**(id) 오름차순 정렬
+                if (m1[1] == m2[1]) {
+                    return Integer.compare(m1[0], m2[0]);
+                } else {
+                    return Integer.compare(m2[1], m1[1]);
+                }
+            });
+
+            for (int i = 0; i < Math.min(2, musicList.size()); i++) {
+                answer.add(musicList.get(i)[0]); // 고유번호 인덱스
+            }
+        }
+
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
