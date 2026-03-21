@@ -3,7 +3,37 @@ import java.util.*;
 public class TestSolution {
     public static void main(String[] args) {
         // [훈련] 오늘 정복할 퀘스트 목록
-        testMenuRenewal(); // 1. 메뉴 리뉴얼 (최초 정복 도전)
+        testTableEdit(); // 1. 표 편집 (Master 도전)
+        testMenuRenewal(); // 2. 메뉴 리뉴얼 (최초 정복 도전)
+    }
+
+    private static void testTableEdit() {
+        stack.TableEditSolution solver = new stack.TableEditSolution();
+        System.out.println("\n--- [Master 도전] 표 편집 (Table Edit) ---");
+
+        // Test Case 1
+        int n1 = 8;
+        int k1 = 2;
+        String[] cmd1 = { "D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z" };
+        String expected1 = "OOOOXOOO";
+        String res1 = solver.solution(n1, k1, cmd1);
+        System.out.println("Test Case 1: " + (expected1.equals(res1) ? "PASS" : "FAIL"));
+        if (!expected1.equals(res1)) {
+            System.out.println("Expected: " + expected1);
+            System.out.println("Actual:   " + res1);
+        }
+
+        // Test Case 2
+        int n2 = 8;
+        int k2 = 2;
+        String[] cmd2 = { "D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z", "U 1", "C" };
+        String expected2 = "OOXOXOOO";
+        String res2 = solver.solution(n2, k2, cmd2);
+        System.out.println("Test Case 2: " + (expected2.equals(res2) ? "PASS" : "FAIL"));
+        if (!expected2.equals(res2)) {
+            System.out.println("Expected: " + expected2);
+            System.out.println("Actual:   " + res2);
+        }
     }
 
     private static void testMenuRenewal() {

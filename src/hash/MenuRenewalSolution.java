@@ -24,11 +24,7 @@ import java.util.*;
 
 public class MenuRenewalSolution {
     public String[] solution(String[] orders, int[] course) {
-        List<String> answerList = new ArrayList<>();
-
-        // 여기에 용사님의 논리를 펼쳐주십시오.
-
-        Collections.sort(answerList);
-        return answerList.toArray(new String[0]);
+        // 여기에 용사님의 논리를 펼쳐주십시오. (메뉴 리뉴얼)
+        return new String[0];
     }
 }
