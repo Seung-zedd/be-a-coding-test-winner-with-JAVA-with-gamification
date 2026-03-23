@@ -3,9 +3,23 @@ import java.util.*;
 public class TestSolution {
     public static void main(String[] args) {
         // [훈련] 오늘 정복할 퀘스트 목록
-        testReportResult(); // 1. 신고 결과 받기 (2회차 복습)
-        // testTableEdit();
-        // testMenuRenewal();
+        testBestAlbum(); // 1. 베스트 앨범 (2회차 복습)
+        // testReportResult();
+    }
+
+    private static void testBestAlbum() {
+        hash.BestAlbumSolution solver = new hash.BestAlbumSolution();
+        System.out.println("\n--- [복습 2회차] 베스트 앨범 (Best Album) ---");
+
+        // [Test Case 1]
+        String[] genres1 = { "classic", "pop", "classic", "classic", "pop" };
+        int[] plays1 = { 500, 600, 150, 800, 2500 };
+        int[] expected1 = { 4, 1, 3, 0 };
+        int[] res1 = solver.solution(genres1, plays1);
+        System.out.println("Test Case 1: " + (Arrays.equals(res1, expected1) ? "PASS" : "FAIL"));
+        if (!Arrays.equals(res1, expected1)) {
+            System.out.println("Expected: " + Arrays.toString(expected1) + " / Actual: " + Arrays.toString(res1));
+        }
     }
 
     private static void testTableEdit() {

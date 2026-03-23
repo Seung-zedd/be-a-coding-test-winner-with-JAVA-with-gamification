@@ -48,32 +48,32 @@ param: 노래의 **장르**를 나타내는 문자열 배열 genres, 노래별 *
 
 public class BestAlbumSolution {
     public int[] solution(String[] genres, int[] plays) {
+        // 장르 별 내림차순 정렬을 위해 먼저 장르 별 집계
         Map<String, Integer> genreMap = new HashMap<>();
-        // A) 장르 별 노래횟수 먼저 집계
         for (int i = 0; i < genres.length; i++) {
             genreMap.merge(genres[i], plays[i], Integer::sum);
         }
 
-        // B) 장르 별 (고유번호, 노래횟수) 리스트로 계산
-        // ! 리스트를 value로 하지 않으면 똑같은 장르일 때 해시값이 업데이트됨
-        Map<String, List<int[]>> musicMap = new HashMap<>();
-        for (int i = 0; i < genres.length; i++) {
-            musicMap.computeIfAbsent(genres[i], k -> new ArrayList<>()).add(new int[] { i, plays[i] });
-        }
-
-        // 장르 별 내림차순 정렬
+        // 장르별 내림차순 실행, but 순서가 있는 정렬을 하기 위해 리스트 초기화
         List<Map.Entry<String, Integer>> genreList = new ArrayList<>(genreMap.entrySet());
         genreList.sort((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()));
 
-        // 집계 계산한 해시맵은 10^2라 2중 for문 사용 가능
+        // 장르 내 내림차순 정렬을 위한 List 수집(idx[0] = 노래 고유번호, idx[1] = 노래 횟수)
+        // ! new int[]만 하면 같은 장르일 때 노래횟수가 덮어쓰일 수 있기 때문에 리스트로 별도 관리!
+        Map<String, List<int[]>> musicMap = new HashMap<>();
+        for (int i = 0; i < genres.length; i++) {
+            musicMap.computeIfAbsent(genres[i], key -> new ArrayList<>()).add(new int[] { i, plays[i] });
+        }
+
+        // 장르별을 순회하면서 내림차순 정렬된 키를 기준으로 다시 내림차순 정렬
+        // 장르 종류는 10^2개 미만이기 때문에 이중 for문 가능!
         List<Integer> answer = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : genreList) {
             String key = entry.getKey();
-            List<int[]> musicList = musicMap.get(key);
 
-            // 장르 내 내림차순 정렬
+            List<int[]> musicList = musicMap.get(key);
             musicList.sort((m1, m2) -> {
-                // if (songX.재생횟수 == songY.재생횟수): **고유번호**(id) 오름차순 정렬
+                // 노래횟수가 같으면 고유번호 오름차순
                 if (m1[1] == m2[1]) {
                     return Integer.compare(m1[0], m2[0]);
                 } else {
@@ -82,7 +82,7 @@ public class BestAlbumSolution {
             });
 
             for (int i = 0; i < Math.min(2, musicList.size()); i++) {
-                answer.add(musicList.get(i)[0]); // 고유번호 인덱스
+                answer.add(musicList.get(i)[0]);
             }
         }
 
