@@ -2,9 +2,32 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // [훈련] 오늘 정복할 퀘스트 목록
-        testBestAlbum(); // 1. 베스트 앨범 (2회차 복습)
-        // testReportResult();
+        // [훈련] 마스터 등극 퀘스트
+        testCardDeck(); // 1. 카드 뭉치 (5회차 - Master 도전)
+    }
+
+    private static void testCardDeck() {
+        queue.CardDeckSolution solver = new queue.CardDeckSolution();
+        System.out.println("\n--- [Master 도전] 카드 뭉치 (Card Deck) ---");
+
+        // [Test Case 1]
+        String[] cards1_1 = { "i", "drink", "water" };
+        String[] cards1_2 = { "want", "to" };
+        String[] goal1 = { "i", "want", "to", "drink", "water" };
+        String expected1 = "Yes";
+        String res1 = solver.solution(cards1_1, cards1_2, goal1);
+        System.out.println("Test Case 1: " + (expected1.equals(res1) ? "PASS" : "FAIL"));
+
+        // [Test Case 2]
+        String[] cards2_1 = { "i", "water", "drink" };
+        String[] cards2_2 = { "want", "to" };
+        String[] goal2 = { "i", "want", "to", "drink", "water" };
+        String expected2 = "No";
+        String res2 = solver.solution(cards2_1, cards2_2, goal2);
+        System.out.println("Test Case 2: " + (expected2.equals(res2) ? "PASS" : "FAIL"));
+        if (!expected2.equals(res2)) {
+            System.out.println("Expected: " + expected2 + " / Actual: " + res2);
+        }
     }
 
     private static void testBestAlbum() {
