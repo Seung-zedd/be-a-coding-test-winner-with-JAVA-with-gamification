@@ -3,8 +3,9 @@ import java.util.*;
 public class TestSolution {
     public static void main(String[] args) {
         // [훈련] 오늘 정복할 퀘스트 목록
-        testTableEdit(); // 1. 표 편집 (Master 도전)
-        testMenuRenewal(); // 2. 메뉴 리뉴얼 (최초 정복 도전)
+        testReportResult(); // 1. 신고 결과 받기 (2회차 복습)
+        // testTableEdit();
+        // testMenuRenewal();
     }
 
     private static void testTableEdit() {
@@ -60,6 +61,33 @@ public class TestSolution {
         if (!Arrays.equals(res2, expected2)) {
             System.out.println("Expected: " + Arrays.toString(expected2));
             System.out.println("Actual: " + Arrays.toString(res2));
+        }
+    }
+
+    private static void testReportResult() {
+        hash.ReportResultSolution solver = new hash.ReportResultSolution();
+        System.out.println("\n--- [복습 2회차] 신고 결과 받기 (Report Result) ---");
+
+        // [Test Case 1]
+        String[] id_list1 = { "muzi", "frodo", "apeach", "neo" };
+        String[] report1 = { "muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi" };
+        int k1 = 2;
+        int[] expected1 = { 2, 1, 1, 0 };
+        int[] res1 = solver.solution(id_list1, report1, k1);
+        System.out.println("Test Case 1: " + (Arrays.equals(res1, expected1) ? "PASS" : "FAIL"));
+        if (!Arrays.equals(res1, expected1)) {
+            System.out.println("Expected: " + Arrays.toString(expected1) + " / Actual: " + Arrays.toString(res1));
+        }
+
+        // [Test Case 2]
+        String[] id_list2 = { "con", "ryan" };
+        String[] report2 = { "ryan con", "ryan con", "ryan con", "ryan con" };
+        int k2 = 3;
+        int[] expected2 = { 0, 0 };
+        int[] res2 = solver.solution(id_list2, report2, k2);
+        System.out.println("Test Case 2: " + (Arrays.equals(res2, expected2) ? "PASS" : "FAIL"));
+        if (!Arrays.equals(res2, expected2)) {
+            System.out.println("Expected: " + Arrays.toString(expected2) + " / Actual: " + Arrays.toString(res2));
         }
     }
 }
