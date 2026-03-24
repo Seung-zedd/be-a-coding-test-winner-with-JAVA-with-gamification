@@ -1,13 +1,13 @@
 {
-  "editor.suggestOnTriggerCharacters": false,
+  "editor.suggestOnTriggerCharacters": true,
   "editor.quickSuggestions": {
-    "other": false,
-    "comments": false,
-    "strings": false
+    "other": true,
+    "comments": true,
+    "strings": true
   },
   "editor.wordBasedSuggestions": "allDocuments",
-  "editor.parameterHints.enabled": false,
-  "java.completion.enabled": false,
+  "editor.parameterHints.enabled": true,
+  "java.completion.enabled": true,
   "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21",
   "java.configuration.runtimes": [
     {

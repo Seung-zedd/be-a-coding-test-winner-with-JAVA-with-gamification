@@ -2,76 +2,8 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // [훈련] 마스터 등극 퀘스트
-        testCardDeck(); // 1. 카드 뭉치 (5회차 - Master 도전)
-    }
-
-    private static void testCardDeck() {
-        queue.CardDeckSolution solver = new queue.CardDeckSolution();
-        System.out.println("\n--- [Master 도전] 카드 뭉치 (Card Deck) ---");
-
-        // [Test Case 1]
-        String[] cards1_1 = { "i", "drink", "water" };
-        String[] cards1_2 = { "want", "to" };
-        String[] goal1 = { "i", "want", "to", "drink", "water" };
-        String expected1 = "Yes";
-        String res1 = solver.solution(cards1_1, cards1_2, goal1);
-        System.out.println("Test Case 1: " + (expected1.equals(res1) ? "PASS" : "FAIL"));
-
-        // [Test Case 2]
-        String[] cards2_1 = { "i", "water", "drink" };
-        String[] cards2_2 = { "want", "to" };
-        String[] goal2 = { "i", "want", "to", "drink", "water" };
-        String expected2 = "No";
-        String res2 = solver.solution(cards2_1, cards2_2, goal2);
-        System.out.println("Test Case 2: " + (expected2.equals(res2) ? "PASS" : "FAIL"));
-        if (!expected2.equals(res2)) {
-            System.out.println("Expected: " + expected2 + " / Actual: " + res2);
-        }
-    }
-
-    private static void testBestAlbum() {
-        hash.BestAlbumSolution solver = new hash.BestAlbumSolution();
-        System.out.println("\n--- [복습 2회차] 베스트 앨범 (Best Album) ---");
-
-        // [Test Case 1]
-        String[] genres1 = { "classic", "pop", "classic", "classic", "pop" };
-        int[] plays1 = { 500, 600, 150, 800, 2500 };
-        int[] expected1 = { 4, 1, 3, 0 };
-        int[] res1 = solver.solution(genres1, plays1);
-        System.out.println("Test Case 1: " + (Arrays.equals(res1, expected1) ? "PASS" : "FAIL"));
-        if (!Arrays.equals(res1, expected1)) {
-            System.out.println("Expected: " + Arrays.toString(expected1) + " / Actual: " + Arrays.toString(res1));
-        }
-    }
-
-    private static void testTableEdit() {
-        stack.TableEditSolution solver = new stack.TableEditSolution();
-        System.out.println("\n--- [Master 도전] 표 편집 (Table Edit) ---");
-
-        // Test Case 1
-        int n1 = 8;
-        int k1 = 2;
-        String[] cmd1 = { "D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z" };
-        String expected1 = "OOOOXOOO";
-        String res1 = solver.solution(n1, k1, cmd1);
-        System.out.println("Test Case 1: " + (expected1.equals(res1) ? "PASS" : "FAIL"));
-        if (!expected1.equals(res1)) {
-            System.out.println("Expected: " + expected1);
-            System.out.println("Actual:   " + res1);
-        }
-
-        // Test Case 2
-        int n2 = 8;
-        int k2 = 2;
-        String[] cmd2 = { "D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z", "U 1", "C" };
-        String expected2 = "OOXOXOOO";
-        String res2 = solver.solution(n2, k2, cmd2);
-        System.out.println("Test Case 2: " + (expected2.equals(res2) ? "PASS" : "FAIL"));
-        if (!expected2.equals(res2)) {
-            System.out.println("Expected: " + expected2);
-            System.out.println("Actual:   " + res2);
-        }
+        // [오늘의 퀘스트] 최초 정복 도전
+        testMenuRenewal();
     }
 
     private static void testMenuRenewal() {
@@ -98,33 +30,6 @@ public class TestSolution {
         if (!Arrays.equals(res2, expected2)) {
             System.out.println("Expected: " + Arrays.toString(expected2));
             System.out.println("Actual: " + Arrays.toString(res2));
-        }
-    }
-
-    private static void testReportResult() {
-        hash.ReportResultSolution solver = new hash.ReportResultSolution();
-        System.out.println("\n--- [복습 2회차] 신고 결과 받기 (Report Result) ---");
-
-        // [Test Case 1]
-        String[] id_list1 = { "muzi", "frodo", "apeach", "neo" };
-        String[] report1 = { "muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi" };
-        int k1 = 2;
-        int[] expected1 = { 2, 1, 1, 0 };
-        int[] res1 = solver.solution(id_list1, report1, k1);
-        System.out.println("Test Case 1: " + (Arrays.equals(res1, expected1) ? "PASS" : "FAIL"));
-        if (!Arrays.equals(res1, expected1)) {
-            System.out.println("Expected: " + Arrays.toString(expected1) + " / Actual: " + Arrays.toString(res1));
-        }
-
-        // [Test Case 2]
-        String[] id_list2 = { "con", "ryan" };
-        String[] report2 = { "ryan con", "ryan con", "ryan con", "ryan con" };
-        int k2 = 3;
-        int[] expected2 = { 0, 0 };
-        int[] res2 = solver.solution(id_list2, report2, k2);
-        System.out.println("Test Case 2: " + (Arrays.equals(res2, expected2) ? "PASS" : "FAIL"));
-        if (!Arrays.equals(res2, expected2)) {
-            System.out.println("Expected: " + Arrays.toString(expected2) + " / Actual: " + Arrays.toString(res2));
         }
     }
 }
