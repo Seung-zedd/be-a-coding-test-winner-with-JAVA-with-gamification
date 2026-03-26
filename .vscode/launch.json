@@ -3,6 +3,14 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Test",
+      "request": "launch",
+      "mainClass": "template.Test",
+      "projectName": "coding-test-java",
+      "vmArgs": "-Dfile.encoding=UTF-8"
+    },
+    {
+      "type": "java",
       "name": "TestSolution",
       "request": "launch",
       "mainClass": "TestSolution",
