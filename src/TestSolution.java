@@ -2,13 +2,13 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // [오늘의 퀘스트] 최초 정복 도전
+        // [오늘의 퀘스트] 복습 도전
         testMenuRenewal();
     }
 
     private static void testMenuRenewal() {
         hash.MenuRenewalSolution solver = new hash.MenuRenewalSolution();
-        System.out.println("\n--- [최초 정복] 메뉴 리뉴얼 (Menu Renewal) ---");
+        System.out.println("\n--- [복습] 메뉴 리뉴얼 (Menu Renewal) ---");
 
         // Test Case 1
         String[] orders1 = { "ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH" };
