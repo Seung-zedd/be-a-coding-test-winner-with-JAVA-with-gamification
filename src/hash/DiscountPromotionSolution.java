@@ -38,40 +38,41 @@ XYZ 마트에서는 회원을 대상으로 매일 한 가지 제품을 할인하
 
 public class DiscountPromotionSolution {
     public int solution(String[] want, int[] number, String[] discount) {
-        // 먼저 정현이의 위시리스트를 생성
         Map<String, Integer> wantMap = new HashMap<>();
+        int day = 0;
+
+        // 위시 리스트 담기
         for (int i = 0; i < want.length; i++) {
             wantMap.merge(want[i], number[i], Integer::sum);
         }
 
-        // 초기 10일까지의 windowMap 생성
+        // 10일차까지의 윈도우맵 세팅
         Map<String, Integer> windowMap = new HashMap<>();
         for (int i = 0; i < 10; i++) {
             windowMap.merge(discount[i], 1, Integer::sum);
         }
 
-        // 초기 10일까지의 맵 비교
-        int count = 0;
+        // 10일차까지 먼저 매칭
         if (wantMap.equals(windowMap)) {
-            count++;
+            day++;
         }
 
-        // 단일 루프 슬라이딩 윈도우 시작
+        // 단일 슬라이딩 윈도우 시작
         for (int i = 10; i < discount.length; i++) {
-            // A) 나가는 품목
+            // 1. 나가는 품목
             String outItem = discount[i - 10];
             windowMap.computeIfPresent(outItem, (k, v) -> v == 1 ? null : v - 1);
-
-            // B) 들어오는 품목
-            //? 초기 10일까지의 windowMap 생성에서의 merge 재활용(왜냐하면 11일차부터는 새로운 품목이 생길 수 있기 때문에 새로 카운팅)
+            
+            // 2. 들어오는 품목
             String inItem = discount[i];
-            windowMap.merge(inItem, 1, Integer::sum);
+            windowMap.merge(inItem, 1, Integer::sum); // 없으면 1추가, 있으면 기존의 value에 1 추가
 
-            // C) 매칭
+            // 3. 매칭
             if (wantMap.equals(windowMap)) {
-                count++;
+                day++;
             }
         }
-        return count;
+
+        return day;
     }
 }

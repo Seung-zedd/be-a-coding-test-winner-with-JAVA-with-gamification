@@ -69,38 +69,6 @@ import java.util.*;
 
 public class OpenChatSolution {
     public String[] solution(String[] record) {
-        // 유저맵 생성<userid, nickname>
-        // 1. 완성된 해시맵
-        Map<String, String> userMap = new HashMap<>();
-        for (String r : record) {
-            String[] msg = r.split(" ");
-            if (msg.length > 2) {
-                String username = msg[1];
-                String nickname = msg[2];
-                userMap.put(username, nickname);
-            }
-        }
-
-        // 2. 메시지 조립(해시맵에서 조회하는거라 "+" 연산자 사용 가능)
-        List<String> answer = new ArrayList<>();
-        for (String r : record) {
-            String[] msg = r.split(" ");
-            String command = msg[0];
-            String username = msg[1];
-
-            // "Leave [유저 아이디]" (ex. "Leave uid1234") 
-            // switch-case문에서 파싱하라는 의미 -> 완성된 해시맵으로 닉네임을 가져온다
-            switch (command) {
-                case "Enter":
-                    answer.add(userMap.get(username) + "님이 들어왔습니다.");
-                    break;
-                case "Leave":
-                    answer.add(userMap.get(username) + "님이 나갔습니다.");
-                    break;
-            }
-        }
-        
-        //? map()은 어떤 타입일 때 사용하는거지? -> git commit history의 desc를 보셈!
-        return answer.stream().toArray(String[]::new);
+        return new String[0];
     }
 }
