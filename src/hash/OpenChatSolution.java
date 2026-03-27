@@ -3,11 +3,6 @@ package hash;
 import java.util.*;
 
 /*
-[🛡️ 4회차 복습: 오픈 채팅방]
-- 미션: 2-Pass 지연 평가(Lazy Evaluation) 철학의 완벽한 투영
-- 핵심: 1-Pass에서 최종 닉네임 확정, 2-Pass에서 메시지 조립
-- 제한 가혹 조건: 자동 완성 봉인 (Zero Auto-completion)
-
 [문제 해석]
 카카오톡 오픈채팅방에서는 친구가 아닌 사람들과 대화를 할 수 있는데, 본래 닉네임이 아닌 "가상의 닉네임을 사용"하여 채팅방에 들어갈 수 있다.
 -> // nickname도 record에 준다.
@@ -46,7 +41,7 @@ import java.util.*;
 
 4. [유저 아이디] 사용자가 채팅방에서 퇴장 - "Leave [유저 아이디]" (ex. "Leave uid1234")
 -> Leave [getKey]
--> //! 아... 이 단서가 표 편집과 비슷하게 ArrayIndexOutOfBoundsException의 단서였음! -> for문에서 파싱하는게 아니라 switch-case문에서 파싱하라는 의미
+-> //! 아... 이 단서가 표 편집과 비슷하게 ArrayIndexOutOfBoundsException의 단서였음! -> 1. 최종적인 닉네임을 파악하기 위함 단계에서 if문으로 방어적 코딩 해야함
 
 5. [유저 아이디] 사용자가 닉네임을 [닉네임]으로 변경 - "Change [유저 아이디] [닉네임]" (ex. "Change uid1234 Muzi")
 -> 7번 해석한 의미와 동일
@@ -69,6 +64,36 @@ import java.util.*;
 
 public class OpenChatSolution {
     public String[] solution(String[] record) {
-        return new String[0];
+        // Enter와 Change에는 유저 아이디와 닉네임이 있기 때문에 split()의 결과가 3 이상인 경우에만 해시맵에 저장
+        Map<String, String> userMap = new HashMap<>();
+
+        // 1. 최종적인 닉네임을 파악하기 위함(Enter, Change)
+        for (String r : record) {
+            String[] msg = r.split(" "); // 각 단어는 공백으로 구분
+            if (msg.length > 2) {
+                String userId = msg[1];
+                String nickname = msg[2];
+                userMap.put(userId, nickname);
+            }
+        }
+
+        // 2. switch-case문으로 메시지 조립
+        // 해시맵의 조회는 O(1)이기 때문에 "+"연산자 사용 가능
+        List<String> answer = new ArrayList<>();
+        for (String r : record) {
+            String[] msg = r.split(" ");
+            String cmd = msg[0];
+            String userId = msg[1];
+
+            switch (cmd) {
+                case "Enter":
+                    answer.add(userMap.get(userId) + "님이 들어왔습니다.");
+                    break;
+                case "Leave":
+                    answer.add(userMap.get(userId) + "님이 나갔습니다.");
+                    break;
+            }
+        }
+        return answer.stream().toArray(String[]::new); // 이미 String 제네릭 타입이라 map() 필요없음
     }
 }
