@@ -7,13 +7,13 @@
       "default": true
     }
   ],
-  "editor.suggestOnTriggerCharacters": false,
+  "editor.suggestOnTriggerCharacters": true,
   "editor.quickSuggestions": {
-    "other": false,
-    "comments": false,
-    "strings": false
+    "other": true,
+    "comments": true,
+    "strings": true
   },
   "editor.wordBasedSuggestions": "off",
-  "editor.parameterHints.enabled": false,
-  "java.completion.enabled": false
+  "editor.parameterHints.enabled": true,
+  "java.completion.enabled": true
 }

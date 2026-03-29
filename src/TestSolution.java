@@ -2,38 +2,36 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // [오늘의 퀘스트] 복습 2회차 개시
-        testMenuRenewal();
+        // [오늘의 퀘스트] [문제 25] 트리 순회 (트리)
+        testTreeTraversal();
     }
 
-    private static void testMenuRenewal() {
-        hash.MenuRenewalSolution solver = new hash.MenuRenewalSolution();
-        System.out.println("\n--- [복습 2회차] 메뉴 리뉴얼 (Menu Renewal) ---");
+    private static void testTreeTraversal() {
+        tree.TreeTraversalSolution solver = new tree.TreeTraversalSolution();
+        System.out.println("\n--- [문제 25] 트리 순회 (Tree Traversal) ---");
 
-        String[][] ordersArr = {
-                { "ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH" },
-                { "ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD" },
-                { "XYZ", "XWY", "WXA" }
-        };
-        int[][] courseArr = {
-                { 2, 3, 4 },
-                { 2, 3, 5 },
-                { 2, 3, 4 }
-        };
-        String[][] expectedArr = {
-                { "AC", "ACDE", "BCFG", "CDE" },
-                { "ACD", "AD", "ADE", "CD", "XYZ" },
-                { "WX", "XY" }
+        int[] nodes = { 1, 2, 3, 4, 5, 6, 7 };
+        String[] expected = {
+                "1 2 4 5 3 6 7", // 전위
+                "4 2 5 1 6 3 7", // 중위
+                "4 5 2 6 7 3 1" // 후위
         };
 
-        for (int i = 0; i < ordersArr.length; i++) {
-            String[] result = solver.solution(ordersArr[i], courseArr[i]);
-            System.out.println("Test Case " + (i + 1) + ": " +
-                    (Arrays.equals(result, expectedArr[i]) ? "PASS ✅" : "FAIL ❌"));
-            System.out.println("  Expected: " + Arrays.toString(expectedArr[i]));
-            System.out.println("  Actual:   " + Arrays.toString(result));
+        String[] result = solver.solution(nodes);
+        boolean pass = true;
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Result " + (i + 1) + ": " + (expected[i].equals(result[i]) ? "PASS ✅" : "FAIL ❌"));
+            System.out.println("  Expected: " + expected[i]);
+            System.out.println("  Actual:   " + result[i]);
+            if (!expected[i].equals(result[i]))
+                pass = false;
         }
 
-        System.out.println("\n전장 세팅 완료. 백지 위에서 검을 휘두르십시오.");
+        if (pass) {
+            System.out.println("\n모든 순회 루트를 확보했습니다. 트리 차원의 주인이 되셨군요!");
+        } else {
+            System.out.println("\n순회 경로에 차원이 어긋나 있습니다. 로직을 재검토하십시오.");
+        }
     }
 }
