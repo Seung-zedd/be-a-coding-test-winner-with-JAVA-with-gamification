@@ -3,10 +3,10 @@ import java.util.*;
 public class TestSolution {
     public static void main(String[] args) {
         // [오늘의 퀘스트] [복습 3회차] 신고 결과 받기 (해시)
-        testReportResult();
+        // testReportResult();
 
         // [오늘의 퀘스트] [문제 25] 트리 순회 (트리)
-        // testTreeTraversal();
+        testTreeTraversal();
     }
 
     private static void testReportResult() {
