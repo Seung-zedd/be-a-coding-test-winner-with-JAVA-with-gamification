@@ -2,8 +2,26 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
+        // [오늘의 퀘스트] [복습 3회차] 신고 결과 받기 (해시)
+        testReportResult();
+
         // [오늘의 퀘스트] [문제 25] 트리 순회 (트리)
-        testTreeTraversal();
+        // testTreeTraversal();
+    }
+
+    private static void testReportResult() {
+        hash.ReportResultSolution solver = new hash.ReportResultSolution();
+        System.out.println("\n--- [복습 3회차] 신고 결과 받기 (Report Result) ---");
+
+        String[] id_list = { "muzi", "frodo", "apeach", "neo" };
+        String[] report = { "muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi" };
+        int k = 2;
+        int[] expected = { 2, 1, 1, 0 };
+
+        int[] result = solver.solution(id_list, report, k);
+        System.out.println("Result: " + (Arrays.equals(expected, result) ? "PASS ✅" : "FAIL ❌"));
+        System.out.println("  Expected: " + Arrays.toString(expected));
+        System.out.println("  Actual:   " + Arrays.toString(result));
     }
 
     private static void testTreeTraversal() {
@@ -20,11 +38,17 @@ public class TestSolution {
         String[] result = solver.solution(nodes);
         boolean pass = true;
 
+        if (result == null || result.length < 3) {
+            System.out.println("Result: FAIL ❌ (Output is null or wrong size)");
+            return;
+        }
+
         for (int i = 0; i < 3; i++) {
-            System.out.println("Result " + (i + 1) + ": " + (expected[i].equals(result[i]) ? "PASS ✅" : "FAIL ❌"));
+            String res = result[i] == null ? "null" : result[i];
+            System.out.println("Result " + (i + 1) + ": " + (expected[i].equals(res) ? "PASS ✅" : "FAIL ❌"));
             System.out.println("  Expected: " + expected[i]);
-            System.out.println("  Actual:   " + result[i]);
-            if (!expected[i].equals(result[i]))
+            System.out.println("  Actual:   " + res);
+            if (!expected[i].equals(res))
                 pass = false;
         }
 
