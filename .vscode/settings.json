@@ -13,7 +13,7 @@
     "comments": true,
     "strings": true
   },
-  "editor.wordBasedSuggestions": "off",
+  "editor.wordBasedSuggestions": "allDocuments",
   "editor.parameterHints.enabled": true,
   "java.completion.enabled": true
 }
