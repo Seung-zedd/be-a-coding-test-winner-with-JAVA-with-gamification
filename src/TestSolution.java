@@ -2,31 +2,19 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // [오늘의 퀘스트] [복습 3회차] 신고 결과 받기 (해시)
-        // testReportResult();
-
-        // [오늘의 퀘스트] [문제 25] 트리 순회 (트리)
+        // [오늘의 퀘스트] [복습 1회차] 트리 순회 (트리)
         testTreeTraversal();
-    }
 
-    private static void testReportResult() {
-        hash.ReportResultSolution solver = new hash.ReportResultSolution();
-        System.out.println("\n--- [복습 3회차] 신고 결과 받기 (Report Result) ---");
+        // [오늘의 퀘스트] [복습 5회차] 괄호 회전하기 (마스터 도전)
+        // testValidParenthesisLeftRotate();
 
-        String[] id_list = { "muzi", "frodo", "apeach", "neo" };
-        String[] report = { "muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi" };
-        int k = 2;
-        int[] expected = { 2, 1, 1, 0 };
-
-        int[] result = solver.solution(id_list, report, k);
-        System.out.println("Result: " + (Arrays.equals(expected, result) ? "PASS ✅" : "FAIL ❌"));
-        System.out.println("  Expected: " + Arrays.toString(expected));
-        System.out.println("  Actual:   " + Arrays.toString(result));
+        // [오늘의 퀘스트] [문제 26] 예상 대진표 (신규)
+        // testExpectedTournament();
     }
 
     private static void testTreeTraversal() {
         tree.TreeTraversalSolution solver = new tree.TreeTraversalSolution();
-        System.out.println("\n--- [문제 25] 트리 순회 (Tree Traversal) ---");
+        System.out.println("\n--- [복습 1회차] 트리 순회 (Tree Traversal) ---");
 
         int[] nodes = { 1, 2, 3, 4, 5, 6, 7 };
         String[] expected = {
@@ -57,5 +45,33 @@ public class TestSolution {
         } else {
             System.out.println("\n순회 경로에 차원이 어긋나 있습니다. 로직을 재검토하십시오.");
         }
+    }
+
+    private static void testValidParenthesisLeftRotate() {
+        stack.ValidParenthesisLeftRotateSolution solver = new stack.ValidParenthesisLeftRotateSolution();
+        System.out.println("\n--- [복습 5회차] 괄호 회전하기 (Valid Parenthesis Left Rotate) ---");
+
+        String s = "[](){}";
+        int expected = 3;
+        int result = solver.solution(s);
+
+        System.out.println("Result: " + (expected == result ? "PASS ✅" : "FAIL ❌"));
+        System.out.println("  Expected: " + expected);
+        System.out.println("  Actual:   " + result);
+    }
+
+    private static void testExpectedTournament() {
+        tree.ExpectedTournamentSolution solver = new tree.ExpectedTournamentSolution();
+        System.out.println("\n--- [문제 26] 예상 대진표 (Expected Tournament) ---");
+
+        int n = 8;
+        int a = 4;
+        int b = 7;
+        int expected = 3;
+        int result = solver.solution(n, a, b);
+
+        System.out.println("Result: " + (expected == result ? "PASS ✅" : "FAIL ❌"));
+        System.out.println("  Expected: " + expected);
+        System.out.println("  Actual:   " + result);
     }
 }
