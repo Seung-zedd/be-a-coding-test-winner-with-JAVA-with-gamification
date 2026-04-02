@@ -2,11 +2,11 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // [오늘의 퀘스트] [복습 1회차] 트리 순회 (트리)
-        // testTreeTraversal();
+        // [오늘의 퀘스트] [복습 2회차] 트리 순회 (트리)
+        testTreeTraversal();
 
-        // [오늘의 퀘스트] [복습 5회차] 괄호 회전하기 (마스터 도전)
-        testValidParenthesisLeftRotate();
+        // [오늘의 퀘스트] [복습 5회차] 괄호 회전하기 (마스터 완료)
+        // testValidParenthesisLeftRotate();
 
         // [오늘의 퀘스트] [문제 26] 예상 대진표 (신규)
         // testExpectedTournament();
@@ -14,7 +14,7 @@ public class TestSolution {
 
     private static void testTreeTraversal() {
         tree.TreeTraversalSolution solver = new tree.TreeTraversalSolution();
-        System.out.println("\n--- [복습 1회차] 트리 순회 (Tree Traversal) ---");
+        System.out.println("\n--- [복습 2회차] 트리 순회 (Tree Traversal) ---");
 
         int[] nodes = { 1, 2, 3, 4, 5, 6, 7 };
         String[] expected = {

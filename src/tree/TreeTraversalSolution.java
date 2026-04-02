@@ -4,69 +4,56 @@ import java.util.*;
 
 public class TreeTraversalSolution {
     public String[] solution(int[] nodes) {
-        // [문제 25] 트리 순회 (트리)
-        // 전입을 환영한다, 용사여. 트리라는 새로운 차원이 열렸다.
-        // 0번 인덱스부터 시작하는 완전 이진 트리를 전위, 중위, 후위 순회로 정복하라.
-        String[] ans = new String[3];
-
-        // 재귀함수에서 계속 호출하면 힙 메모리 터짐! && result 대용
+        // [복습 2회차] 트리 순회 (Tree Traversal)
+        // 0-based 인덱스 완전 이진 트리: 왼쪽 자식(2i+1), 오른쪽 자식(2i+2)
         StringBuilder sb = new StringBuilder();
+        String[] answer = new String[3];
 
-        String res0 = preOrder(nodes, sb, 0);
-        ans[0] = res0.trim();
-        sb.setLength(0); // sb.clear()
-        String res1 = inOrder(nodes, sb, 0);
-        ans[1] = res1.trim();
+        //! 결과값인 "1 2 4 5 3 6 7 "에서 문자열 끝에 보이지 않는 공백 한 칸을 제거하기 위해 trim()을 사용해줘야함
+        String res0 = preOrder(nodes, sb, 0).trim();
+        answer[0] = res0;
         sb.setLength(0);
-        String res2 = postOrder(nodes, sb, 0);
-        ans[2] = res2.trim();
+        String res1 = inOrder(nodes, sb, 0).trim();
+        answer[1] = res1;
         sb.setLength(0);
-
-        return ans;
+        String res2 = postOrder(nodes, sb, 0).trim();
+        answer[2] = res2;
+        return answer;
     }
 
-    private static String preOrder(int[] nodes, StringBuilder sb, int i) {
-        // base condition
-        //! 0-based index
+    private String preOrder(int[] nodes, StringBuilder sb, int i) {
         if (i > nodes.length - 1) {
             return null;
-        }
-
-        if (i <= nodes.length - 1) {
+        } else {
             sb.append(String.valueOf(nodes[i])).append(" ");
-            preOrder(nodes, sb, 2 * i + 1); // left child
-            preOrder(nodes, sb, 2 * i + 2); // right child
+            preOrder(nodes, sb, 2 * i + 1);
+            preOrder(nodes, sb, 2 * i + 2);
         }
 
         return sb.toString();
     }
 
-    private static String inOrder(int[] nodes, StringBuilder sb, int i) {
+    private String inOrder(int[] nodes, StringBuilder sb, int i) {
         if (i > nodes.length - 1) {
             return null;
-        }
-
-        if (i <= nodes.length - 1) {
-            inOrder(nodes, sb, 2 * i + 1); // left child
+        } else {
+            inOrder(nodes, sb, 2 * i + 1);
             sb.append(String.valueOf(nodes[i])).append(" ");
-            inOrder(nodes, sb, 2 * i + 2); // right child
+            inOrder(nodes, sb, 2 * i + 2);
         }
 
         return sb.toString();
     }
 
-    private static String postOrder(int[] nodes, StringBuilder sb, int i) {
+    private String postOrder(int[] nodes, StringBuilder sb, int i) {
         if (i > nodes.length - 1) {
             return null;
-        }
-
-        if (i <= nodes.length - 1) {
-            postOrder(nodes, sb, 2 * i + 1); // left child
-            postOrder(nodes, sb, 2 * i + 2); // right child
+        } else {
+            postOrder(nodes, sb, 2 * i + 1);
+            postOrder(nodes, sb, 2 * i + 2);
             sb.append(String.valueOf(nodes[i])).append(" ");
         }
 
         return sb.toString();
     }
-
 }
