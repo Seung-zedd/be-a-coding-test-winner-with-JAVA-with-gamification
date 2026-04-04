@@ -22,3 +22,5 @@ out/
 Thumbs.db
 .DS_Store
 
+# 기타 에이전트 관련 파일 업로드하면 안되는 것들
+.claude/settings.local.json

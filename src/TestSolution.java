@@ -2,25 +2,41 @@ import java.util.*;
 
 public class TestSolution {
     public static void main(String[] args) {
-        // [오늘의 퀘스트] [복습 2회차] 트리 순회 (트리)
-        testTreeTraversal();
+        // --- 오늘 정복해야 할 모든 퀘스트 (복습) ---
+        // 1. [복습 1회차] 예상 대진표 (트리)
+        testExpectedTournament();
 
-        // [오늘의 퀘스트] [복습 5회차] 괄호 회전하기 (마스터 완료)
-        // testValidParenthesisLeftRotate();
+        // 2. [복습 3회차] 트리 순회 (트리) - 일반 자동완성 봉인 룰 적용
+        // testTreeTraversal();
 
-        // [오늘의 퀘스트] [문제 26] 예상 대진표 (신규)
-        // testExpectedTournament();
+        // 3. [복습 3회차] 메뉴 리뉴얼 (해시) - 베테랑(3/3) 자동완성 봉인 룰 적용
+        // testMenuRenewal();
+    }
+
+    private static void testExpectedTournament() {
+        tree.ExpectedTournamentSolution solver = new tree.ExpectedTournamentSolution();
+        System.out.println("\n--- 1. [복습 1회차] 예상 대진표 (Expected Tournament) ---");
+
+        int n = 8;
+        int a = 4;
+        int b = 7;
+        int expected = 3;
+        int result = solver.solution(n, a, b);
+
+        System.out.println("Result: " + (expected == result ? "PASS ✅" : "FAIL ❌"));
+        System.out.println("  Expected: " + expected);
+        System.out.println("  Actual:   " + result);
     }
 
     private static void testTreeTraversal() {
         tree.TreeTraversalSolution solver = new tree.TreeTraversalSolution();
-        System.out.println("\n--- [복습 2회차] 트리 순회 (Tree Traversal) ---");
+        System.out.println("\n--- 2. [복습 3회차] 트리 순회 (Tree Traversal) ---");
 
         int[] nodes = { 1, 2, 3, 4, 5, 6, 7 };
         String[] expected = {
                 "1 2 4 5 3 6 7", // 전위
                 "4 2 5 1 6 3 7", // 중위
-                "4 5 2 6 7 3 1" // 후위
+                "4 5 2 6 7 3 1"  // 후위
         };
 
         String[] result = solver.solution(nodes);
@@ -41,37 +57,23 @@ public class TestSolution {
         }
 
         if (pass) {
-            System.out.println("\n모든 순회 루트를 확보했습니다. 트리 차원의 주인이 되셨군요!");
+            System.out.println("모든 순회 루트를 확보했습니다.");
         } else {
-            System.out.println("\n순회 경로에 차원이 어긋나 있습니다. 로직을 재검토하십시오.");
+            System.out.println("순회 경로에 차원이 어긋나 있습니다.");
         }
     }
 
-    private static void testValidParenthesisLeftRotate() {
-        stack.ValidParenthesisLeftRotateSolution solver = new stack.ValidParenthesisLeftRotateSolution();
-        System.out.println("\n--- [복습 5회차] 괄호 회전하기 (Valid Parenthesis Left Rotate) ---");
+    private static void testMenuRenewal() {
+        hash.MenuRenewalSolution solver = new hash.MenuRenewalSolution();
+        System.out.println("\n--- 3. [복습 3회차] 메뉴 리뉴얼 (Menu Renewal) ---");
 
-        String s = "[](){}";
-        int expected = 3;
-        int result = solver.solution(s);
+        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        int[] course = {2, 3, 4};
+        String[] expected = {"AC", "ACDE", "BCFG", "CDE"};
+        String[] result = solver.solution(orders, course);
 
-        System.out.println("Result: " + (expected == result ? "PASS ✅" : "FAIL ❌"));
-        System.out.println("  Expected: " + expected);
-        System.out.println("  Actual:   " + result);
-    }
-
-    private static void testExpectedTournament() {
-        tree.ExpectedTournamentSolution solver = new tree.ExpectedTournamentSolution();
-        System.out.println("\n--- [문제 26] 예상 대진표 (Expected Tournament) ---");
-
-        int n = 8;
-        int a = 4;
-        int b = 7;
-        int expected = 3;
-        int result = solver.solution(n, a, b);
-
-        System.out.println("Result: " + (expected == result ? "PASS ✅" : "FAIL ❌"));
-        System.out.println("  Expected: " + expected);
-        System.out.println("  Actual:   " + result);
+        System.out.println("Result: " + (Arrays.equals(expected, result) ? "PASS ✅" : "FAIL ❌"));
+        System.out.println("  Expected: " + Arrays.toString(expected));
+        System.out.println("  Actual:   " + Arrays.toString(result));
     }
 }
