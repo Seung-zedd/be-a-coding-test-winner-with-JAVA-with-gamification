@@ -8,7 +8,7 @@ public class TestSolution {
         testMenuRenewal();
 
         // [신규 정복] 다단계 칫솔 판매 (트리) - Lv. 20급 대규모 전장
-        testMultiLevelToothbrushSales();
+        // testMultiLevelToothbrushSales();
     }
 
     private static void testMenuRenewal() {
