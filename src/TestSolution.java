@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 public class TestSolution {
     public static void main(String[] args) {
-        testExpectedTournament();
-        // testReportResult();
+        // testExpectedTournament();
+        testReportResult();
         // testToothbrushSales();
     }
 
