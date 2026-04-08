@@ -10,9 +10,9 @@
   ],
   "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21",
   "java.compile.nullAnalysis.mode": "disabled",
-  "editor.suggestOnTriggerCharacters": false,
-  "editor.quickSuggestions": { "other": false, "comments": false, "strings": false },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.quickSuggestions": { "other": true, "comments": true, "strings": true },
   "editor.wordBasedSuggestions": "off",
-  "editor.parameterHints.enabled": false,
-  "java.completion.enabled": false
+  "editor.parameterHints.enabled": true,
+  "java.completion.enabled": true
 }
