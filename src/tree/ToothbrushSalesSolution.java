@@ -89,38 +89,39 @@ amount: 판매량 집계 데이터의 판매 수량을 나열한 배열
 public class ToothbrushSalesSolution {
     public int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
         int[] answer = new int[enroll.length];
+        // enroll - referral 맵 구성
         Map<String, String> referMap = new HashMap<>();
-        // enroll - referral
         for (int i = 0; i < enroll.length; i++) {
-            referMap.put(enroll[i], referral[i]); // "-"는 center를 의미
+            referMap.put(enroll[i], referral[i]);
         }
 
-        // 이익금 계산
+        // seller - amount
+        // 그런데, seller가 중복될 수 있으므로, seller[i]를 독립적인 이벤트라고 생각하고 상향 전파를 각각 실행
         Map<String, Integer> moneyMap = new HashMap<>();
-        for (int i = 0; i < amount.length; i++) {
+        for (int i = 0; i < seller.length; i++) {
+            String curPerson = seller[i];
             int curMoney = amount[i] * 100;
-            String curPerson = seller[i]; // 현재 노드
 
-            // 부모 노드가 없고 10%를 계산한 금액이 1 원 미만이면 false
-            // ! 문자열 내용 비교는 항상 equals를 사용합시다
-            // ? 아래의 while문은 부모 노드로 계속 전파하는 구조라서 현재 상태를 먼저 수행
-            while (!curPerson.equals("-") && curMoney != 0) {
+            // referral이 "-"가 아니고 curMoney가 0원이 아닐 때까지 while문 반복(pruning 효과)
+            // while문 안에서 현재 상태를 계속해서 상향 전파해야 하기 때문에 cur 변수를 그대로 사용
+            //? curPerson이 center가 아니고 남은 금액이 0원을 초과할 때만 상향 전파를 수행
+            while (!curPerson.equals("-") && curMoney > 0) {
                 int referMoney = curMoney / 10;
                 int myMoney = curMoney - referMoney;
+
                 // 내 돈을 먼저 챙김
                 moneyMap.merge(curPerson, myMoney, Integer::sum);
-                // 나머지를 부모 노드로 위임
-                curPerson = referMap.getOrDefault(curPerson, "-");
+
+                // 나머지는 부모 노드로 위임
                 curMoney = referMoney;
+                curPerson = referMap.getOrDefault(curPerson, "-"); // center도 처리
             }
         }
-        //! center는 애초에 "enroll에 민호의 이름은 없습니다."고 했기 때문에 고려하지 않아도 됨
 
-        // 최종 이익금 계산
+        // enroll을 순회하면서 이익금 answer에 저장
         for (int i = 0; i < enroll.length; i++) {
-            // ! "sam"은 seller에 없고 리프 노드에 해당하기 때문에 0원 발생
-            int money = moneyMap.getOrDefault(enroll[i], 0);
-            answer[i] = money;
+            String curPerson = enroll[i];
+            answer[i] = moneyMap.getOrDefault(curPerson, 0); // enroll 명단에는 있지만 seller 명단에는 없는 경우
         }
 
         return answer;
