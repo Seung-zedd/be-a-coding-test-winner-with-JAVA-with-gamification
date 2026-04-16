@@ -1,11 +1,9 @@
 import java.util.Arrays;
-import tree.ToothbrushSalesSolution;
 import tree.SheepAndWolfSolution;
 
 public class TestSolution {
     public static void main(String[] args) {
-        testToothbrushSales();
-        // testSheepAndWolf();
+        testSheepAndWolf();
     }
 
     private static void testSheepAndWolf() {
@@ -25,7 +23,7 @@ public class TestSolution {
         }
 
         // Case 2
-        int[] info2 = { 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0 };
+        int[] info2 = { 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0 };
         int[][] edges2 = { { 0, 1 }, { 0, 2 }, { 1, 3 }, { 1, 4 }, { 2, 5 }, { 2, 6 }, { 3, 7 }, { 4, 8 }, { 5, 9 },
                 { 9, 10 } };
         int result2 = sol.solution(info2, edges2);
@@ -34,37 +32,6 @@ public class TestSolution {
         if (result2 != expected2) {
             System.out.println("  Expected: " + expected2);
             System.out.println("  Actual:   " + result2);
-        }
-    }
-
-    private static void testToothbrushSales() {
-        ToothbrushSalesSolution sol = new ToothbrushSalesSolution();
-        System.out.println("--- [복습] Toothbrush Sales Test ---");
-
-        // Case 1
-        String[] enroll1 = { "john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young" };
-        String[] referral1 = { "-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward" };
-        String[] seller1 = { "young", "john", "tod", "emily", "mary" };
-        int[] amount1 = { 12, 4, 2, 5, 10 };
-        int[] result1 = sol.solution(enroll1, referral1, seller1, amount1);
-        int[] expected1 = { 360, 958, 108, 0, 450, 18, 180, 1080 };
-        System.out.println("Case 1: " + Arrays.equals(result1, expected1));
-        if (!Arrays.equals(result1, expected1)) {
-            System.out.println("  Expected: " + Arrays.toString(expected1));
-            System.out.println("  Actual:   " + Arrays.toString(result1));
-        }
-
-        // Case 2
-        String[] enroll2 = { "john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young" };
-        String[] referral2 = { "-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward" };
-        String[] seller2 = { "sam", "emily", "jaimie", "edward" };
-        int[] amount2 = { 2, 3, 5, 4 };
-        int[] result2 = sol.solution(enroll2, referral2, seller2, amount2);
-        int[] expected2 = { 0, 110, 378, 180, 270, 450, 0, 0 };
-        System.out.println("Case 2: " + Arrays.equals(result2, expected2));
-        if (!Arrays.equals(result2, expected2)) {
-            System.out.println("  Expected: " + Arrays.toString(expected2));
-            System.out.println("  Actual:   " + Arrays.toString(result2));
         }
     }
 }

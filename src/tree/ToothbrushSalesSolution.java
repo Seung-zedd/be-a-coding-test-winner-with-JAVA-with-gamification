@@ -117,10 +117,11 @@ public class ToothbrushSalesSolution {
         return answer;
     }
 
-    private static void distribute(String person, int money, Map<String, Integer> moneyMap, Map<String, String> referMap) {
+    private static void distribute(String person, int money, Map<String, Integer> moneyMap,
+            Map<String, String> referMap) {
         // base condition
         // 상향 전파를 하지 않을 조건: 현재 사람이 center거나 돈이 0원이면 절사해서 배당금을 전달하지 않아도 됨
-        //? while문의 여집합
+        // ? while문의 여집합
         if (person.equals("-") || money == 0) {
             return;
         }
