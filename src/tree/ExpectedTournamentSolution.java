@@ -24,20 +24,19 @@ package tree;
 */
 
 public class ExpectedTournamentSolution {
-    /*
-     * [문제 26] 예상 대진표 (Expected Tournament)
-     * - 지문 분석 내용이 주석으로 남아 있어야 합니다. (초고속 백지 복습 룰)
-     */
-    public int solution(int n, int a, int b) {
-        //? solution()의 정의: a와 b는 도대체 몇 라운드에 만날 것인가?
-        // base condition
-        // a와 b의 다음 라운드 번호가 같을 때(즉, 이번에 맞붙을 때), 더 이상 남은 라운드는 없고 이번 1경기로 끝난다.
-        if ((a + 1) / 2 == (b + 1) / 2) {
-            return 1;
-        }
-
-        // ?의 정체: ?는 현재 내 상태를 의미함, 즉 전체적인 F(n)은 모르겠고 지금 내가 여기서 1경기를 치렀으니 전체 라운드 수에 1만큼 기여했다. 
-        // F(next)의 정체: 다음 라운드 번호로 바뀐 애들 (a+1)/2, (b+1)/2이 만나는 건 다음 함수 네가 알아서 계산해서 가져와!
-        return 1 + solution(n, (a + 1) / 2, (b + 1) / 2); 
+  /*
+   * [문제 26] 예상 대진표 (Expected Tournament)
+   * - 지문 분석 내용이 주석으로 남아 있어야 합니다. (초고속 백지 복습 룰)
+   */
+  public int solution(int n, int a, int b) {
+    // base condition
+    // a와 b가 마지막 라운드에서 만나면 1 라운드를 가져감
+    if ((a + 1) / 2 == (b + 1) / 2) {
+      return 1;
     }
+
+    // 현재의 상태: 일단 1라운드 가져감
+    // F(next): 다음 라운드로 위임
+    return 1 + solution(n, (a + 1) / 2, (b + 1) / 2);
+  }
 }
