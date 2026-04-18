@@ -67,28 +67,48 @@ amount: 판매량 집계 데이터의 판매 수량을 나열한 배열
 -> 이익금 = amount * 100
 6. 모든 조직 구성원들의 이름은 10 글자 이내의 영문 알파벳 소문자들로만 이루어져 있습니다.
 
-[로직 설계]
-2. enroll for문 순회
-    2.1. enroll - referral 맵 구성, Map<String, String> referMap으로 매핑("입력으로 주어진 enroll에 이름이 포함된 순서에 따라 나열하면 됩니다." => 신고 결과의 옵저버 패턴과 동일함, 그러니까 마지막에 enroll을 for문으로 돌리면서 이익금을 저장하면 됨)
-3. amount for문 순회하면서 이익금 계산(seller와 amount는 일대일 대응 관계)
-    3.1. money = amount[i] * 100
-    3.2. 나의 돈과 나눠야할 돈을 분배
-        myMoney = money * 0.9
-        referMoney = money * 0.1
-    업데이트된 이익금을 게산해야함 => Map<String, Integer> moneyMap
-    3.4. person, referral을 분배 // person = seller[i], referral = referMap.get(seller[i])
-    3.3. while (referral != null):
-        3.3.1. moneyMap.merge(person, myMoney, Integer::sum); person이 누군가에게는 referral이 될 수 있으므로
-        person = referral // 
-        
-4. enroll for문 순회
-    4.1. 위에서 tallyMap.merge(seller[i], money, Integer::sum)로 업데이트한 money를 answer[i]로 저장 // 어짜피 판매원의 중복된 판매 리스트는 tallyMap에서 계산
-5. answer를 리턴
+
 */
 
 public class ToothbrushSalesSolution {
     public int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
-        // [백지 복습] 2회차: 상향 전파와 기하급수적 감쇠의 논리를 재구성하십시오.
-        return new int[enroll.length];
+        // <enroll ,referral> referMap 구성
+        // "자신을 조직에 참여시킨 추천인인 edward에게 배분"
+        Map<String, String> referMap = new HashMap<>();
+        for (int i = 0; i < enroll.length; i++) {
+            referMap.put(enroll[i], referral[i]);
+        }
+
+        // 1. 판매 기록
+        Map<String, Integer> moneyMap = new HashMap<>();
+        for (int i = 0; i < seller.length; i++) {
+            // 상향 전파되지 않고 순전히 판매 기록을 보고 설정한 값들
+            String me = seller[i];
+            int money = amount[i] * 100;
+    
+            // referMoney가 1원 미만이고 내가 center가 아닐 때까지
+            //? "10%를 계산한 금액이 1원 미만인 경우에는 이득을 분배하지 않고 '자신이 모두 가집니다.'"
+            while (money >= 1 && !me.equals("-")) {
+                int referMoney = money / 10;
+                int myMoney = money - referMoney; // 1200 - 120 -> 120 - 12
+                // 내 돈을 먼저 갖고
+                moneyMap.merge(me, myMoney, Integer::sum);
+
+                // 나머지는 상향 전파
+                String referred = referMap.get(me);
+                // referMoney와 referred 업데이트
+                me = referred;
+                money = referMoney; // 상향 전파된 이익금이 내 돈이 된다
+                
+            }
+        }
+
+        // 2. enroll for문 순회
+        int[] ans = new int[enroll.length];
+        for (int i = 0; i < enroll.length; i++) {
+            ans[i] = moneyMap.getOrDefault(enroll[i], 0); // seller 명단에 없는 사람이 있을 수 있음
+        }
+
+        return ans;
     }
 }
