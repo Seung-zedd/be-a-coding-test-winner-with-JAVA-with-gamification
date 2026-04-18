@@ -85,22 +85,8 @@ public class ToothbrushSalesSolution {
             // 상향 전파되지 않고 순전히 판매 기록을 보고 설정한 값들
             String me = seller[i];
             int money = amount[i] * 100;
-    
-            // referMoney가 1원 미만이고 내가 center가 아닐 때까지
-            //? "10%를 계산한 금액이 1원 미만인 경우에는 이득을 분배하지 않고 '자신이 모두 가집니다.'"
-            while (money >= 1 && !me.equals("-")) {
-                int referMoney = money / 10;
-                int myMoney = money - referMoney; // 1200 - 120 -> 120 - 12
-                // 내 돈을 먼저 갖고
-                moneyMap.merge(me, myMoney, Integer::sum);
 
-                // 나머지는 상향 전파
-                String referred = referMap.get(me);
-                // referMoney와 referred 업데이트
-                me = referred;
-                money = referMoney; // 상향 전파된 이익금이 내 돈이 된다
-                
-            }
+            distribute(me, money, moneyMap, referMap);
         }
 
         // 2. enroll for문 순회
@@ -110,5 +96,23 @@ public class ToothbrushSalesSolution {
         }
 
         return ans;
+    }
+
+    private static void distribute(String me, int money, Map<String, Integer> mm, Map<String, String> rm) {
+        // base condition
+        // ? "10%를 계산한 금액이 1원 미만인 경우에는 이득을 분배하지 않고 '자신이 모두 가집니다.'"
+        if (money < 1 || me.equals("-")) {
+            return;
+        }
+
+        int referMoney = money / 10;
+        int myMoney = money - referMoney; // 1200 - 120 -> 120 - 12
+        // 내 돈을 먼저 갖고
+        mm.merge(me, myMoney, Integer::sum);
+
+        // 나머지는 상향 전파
+        String referred = rm.getOrDefault(me, "-");
+        // referMoney와 referred 업데이트
+        distribute(referred, referMoney, mm, rm);
     }
 }
