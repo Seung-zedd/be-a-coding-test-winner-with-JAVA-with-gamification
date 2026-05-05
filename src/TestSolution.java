@@ -1,42 +1,47 @@
 import java.util.Arrays;
-import tree.*;
+import hash.*;
 
 public class TestSolution {
     public static void main(String[] args) {
         // [오늘의 수련 과제 세팅] - Rule 3
-        testToothbrushSales(); // [복습] 2회차 (Overdue)
+        testTangerineSelection(); // [정복] 신규 퀘스트 (Lv. 2)
     }
 
-    private static void testToothbrushSales() {
-        ToothbrushSalesSolution sol = new ToothbrushSalesSolution();
-        System.out.println("\n--- [문제 27] 다단계 칫솔 판매 Test (Review 2) ---");
+    private static void testTangerineSelection() {
+        TangerineSelectionSolution sol = new TangerineSelectionSolution();
+        System.out.println("\n--- [Lv. 2] 귤 고르기 Test (New Quest) ---");
 
-        // 프로그래머스 정석 테케 준수 (Rule 16)
-        String[] enroll = { "john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young" };
-        String[] referral = { "-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward" };
-        String[] seller = { "young", "john", "tod", "emily", "mary" };
-        int[] amount = { 12, 4, 2, 5, 10 };
-        int[] expected = { 360, 958, 108, 0, 450, 18, 180, 1080 };
-
-        int[] result = sol.solution(enroll, referral, seller, amount);
-        System.out.println("Case 1: " + Arrays.equals(result, expected));
-        if (!Arrays.equals(result, expected)) {
-            System.out.println("  Expected: " + Arrays.toString(expected));
-            System.out.println("  Actual:   " + Arrays.toString(result));
+        // Case 1
+        int k1 = 6;
+        int[] tangerine1 = { 1, 3, 2, 5, 4, 5, 2, 3 };
+        int expected1 = 3;
+        int result1 = sol.solution(k1, tangerine1);
+        System.out.println("Case 1: " + (result1 == expected1));
+        if (result1 != expected1) {
+            System.out.println("  Expected: " + expected1);
+            System.out.println("  Actual:   " + result1);
         }
 
         // Case 2
-        String[] enroll2 = { "john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young" };
-        String[] referral2 = { "-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward" };
-        String[] seller2 = { "sam", "emily", "jaimie", "edward" };
-        int[] amount2 = { 2, 3, 5, 4 };
-        int[] expected2 = { 0, 110, 378, 180, 270, 450, 0, 0 };
+        int k2 = 4;
+        int[] tangerine2 = { 1, 3, 2, 5, 4, 5, 2, 3 };
+        int expected2 = 2;
+        int result2 = sol.solution(k2, tangerine2);
+        System.out.println("Case 2: " + (result2 == expected2));
+        if (result2 != expected2) {
+            System.out.println("  Expected: " + expected2);
+            System.out.println("  Actual:   " + result2);
+        }
 
-        int[] result2 = sol.solution(enroll2, referral2, seller2, amount2);
-        System.out.println("Case 2: " + Arrays.equals(result2, expected2));
-        if (!Arrays.equals(result2, expected2)) {
-            System.out.println("  Expected: " + Arrays.toString(expected2));
-            System.out.println("  Actual:   " + Arrays.toString(result2));
+        // Case 3
+        int k3 = 2;
+        int[] tangerine3 = { 1, 1, 1, 1, 2, 2, 2, 3 };
+        int expected3 = 1;
+        int result3 = sol.solution(k3, tangerine3);
+        System.out.println("Case 3: " + (result3 == expected3));
+        if (result3 != expected3) {
+            System.out.println("  Expected: " + expected3);
+            System.out.println("  Actual:   " + result3);
         }
     }
 }
